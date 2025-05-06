@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,22 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// UPI specific colors
+				'upi-blue': {
+					DEFAULT: '#4F46E5',
+					light: '#6366F1',
+					dark: '#4338CA',
+				},
+				'upi-green': {
+					DEFAULT: '#10B981',
+					light: '#34D399',
+					dark: '#059669',
+				},
+				'upi-status': {
+					success: '#10B981',
+					pending: '#F59E0B',
+					failed: '#EF4444',
 				}
 			},
 			borderRadius: {

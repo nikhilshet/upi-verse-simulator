@@ -32,7 +32,7 @@ const BalanceCard: React.FC<BalanceCardProps> = ({ balance }) => {
         <div className="text-2xl font-bold text-white">
           {showBalance ? formatBalance(balance) : '••••••'}
         </div>
-        <button onClick={toggleBalance} className="text-white text-opacity-80 hover:text-opacity-100">
+        <button onClick={toggleBalance} className="text-white text-opacity-80 hover:text-opacity-100 transition-opacity">
           {showBalance ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>
       </div>

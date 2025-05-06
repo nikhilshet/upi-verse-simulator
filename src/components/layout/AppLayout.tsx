@@ -14,7 +14,7 @@ const AppLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-16">
-      <div className="container mx-auto px-4 pt-4 pb-20">
+      <div className="container max-w-md mx-auto px-4 pt-6 pb-20">
         <Outlet />
       </div>
       <BottomNavigation />
