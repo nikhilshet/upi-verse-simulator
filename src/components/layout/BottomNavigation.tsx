@@ -15,7 +15,7 @@ const BottomNavigation = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 h-16 flex items-center justify-around z-10 shadow-md">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 h-16 flex items-center justify-around z-10">
       {navItems.map((item) => {
         const isActive = path === item.path;
         return (
@@ -27,7 +27,7 @@ const BottomNavigation = () => {
             }`}
           >
             <item.icon className={`h-6 w-6 ${isActive ? 'text-upi-blue dark:text-upi-blue-light' : ''}`} />
-            <span className="text-xs mt-1">{item.name}</span>
+            <span className="text-xs mt-1 font-medium">{item.name}</span>
           </Link>
         );
       })}

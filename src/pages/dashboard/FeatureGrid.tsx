@@ -25,13 +25,13 @@ const FeatureGrid = () => {
       {features.map((feature) => (
         <button
           key={feature.id}
-          className="flex flex-col items-center justify-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          className="flex flex-col items-center justify-center p-3 bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700/50 hover:border-upi-blue dark:hover:border-upi-blue-light transition-all"
           onClick={() => handleFeatureClick(feature.path)}
         >
-          <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center mb-2">
+          <div className="w-12 h-12 rounded-full bg-gray-100/80 dark:bg-gray-700/80 flex items-center justify-center mb-2">
             <feature.icon className="h-5 w-5 text-upi-blue dark:text-upi-blue-light" />
           </div>
-          <span className="text-xs text-gray-700 dark:text-gray-300 text-center">
+          <span className="text-xs text-gray-700 dark:text-gray-300 text-center font-medium">
             {feature.name}
           </span>
         </button>

@@ -24,26 +24,26 @@ const BalanceCard: React.FC<BalanceCardProps> = ({ balance }) => {
   };
 
   return (
-    <div className="relative bg-gradient-to-r from-upi-blue-dark to-upi-blue rounded-xl p-6 shadow-lg overflow-hidden">
+    <div className="balance-card relative p-6 overflow-hidden animate-fade-in">
       <div className="absolute top-0 right-0 w-32 h-32 -mt-8 -mr-8 bg-white opacity-10 rounded-full"></div>
       <div className="absolute bottom-0 left-0 w-24 h-24 -mb-8 -ml-8 bg-white opacity-10 rounded-full"></div>
       
-      <h3 className="text-white text-opacity-90 font-medium mb-2">Total Balance</h3>
+      <h3 className="text-sm font-medium text-white/90 mb-2">Total Balance</h3>
       
       <div className="flex items-center space-x-2">
-        <div className="text-2xl font-bold text-white">
+        <div className="text-3xl font-bold text-white">
           {showBalance ? formatBalance(balance) : '••••••'}
         </div>
-        <button onClick={toggleBalance} className="text-white text-opacity-80 hover:text-opacity-100 transition-opacity">
+        <button onClick={toggleBalance} className="text-white/80 hover:text-white transition-opacity">
           {showBalance ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>
       </div>
       
       <div className="flex space-x-2 mt-4">
-        <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs text-white">
+        <span className="px-3 py-1 bg-white/20 rounded-full text-xs text-white backdrop-blur-sm">
           UPI Enabled
         </span>
-        <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs text-white">
+        <span className="px-3 py-1 bg-white/20 rounded-full text-xs text-white backdrop-blur-sm">
           Verified
         </span>
       </div>

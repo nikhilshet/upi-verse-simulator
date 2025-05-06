@@ -6,16 +6,16 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 240 10% 3.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 10% 3.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 10% 3.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 213 100% 50%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -46,17 +46,17 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 210 100% 52%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -103,6 +103,18 @@
   .glass {
     @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg;
   }
+  
+  .apple-card {
+    @apply rounded-xl bg-white dark:bg-gray-800/90 shadow-sm border border-gray-200 dark:border-gray-700/80 overflow-hidden backdrop-blur-sm;
+  }
+  
+  .apple-button {
+    @apply rounded-full bg-upi-blue text-white font-medium px-5 py-2.5 transition-all active:scale-95 hover:bg-upi-blue-dark;
+  }
+  
+  .apple-input {
+    @apply rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-upi-blue dark:focus:ring-upi-blue-light;
+  }
 }
 
 @layer utilities {
@@ -117,5 +129,9 @@
   
   .text-gradient {
     @apply bg-gradient-to-br from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent;
+  }
+  
+  .balance-card {
+    @apply bg-gradient-to-br from-upi-blue to-upi-blue-dark text-white rounded-xl p-6 shadow-lg;
   }
 }

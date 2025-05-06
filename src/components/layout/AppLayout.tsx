@@ -22,7 +22,7 @@ const AppLayout = () => {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} pb-16`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} pb-16 transition-colors`}>
       <div className="container max-w-md mx-auto px-4 pt-6 pb-20">
         <Outlet />
       </div>

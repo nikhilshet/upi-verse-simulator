@@ -5,6 +5,7 @@ import { useAppContext } from '../../contexts/AppContext';
 import BalanceCard from './BalanceCard';
 import FeatureGrid from './FeatureGrid';
 import ServiceSlider from '../../components/shared/ServiceSlider';
+import { ChevronRight } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useAppContext();
@@ -35,19 +36,23 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex flex-col space-y-7">
       <BalanceCard balance={user?.balance || 0} />
       
-      <FeatureGrid />
+      <section className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">UPI Services</h2>
+        <FeatureGrid />
+      </section>
       
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
+      <section className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Bill Payments</h2>
           <button 
             onClick={() => navigate('/bbps')}
-            className="text-upi-blue dark:text-upi-blue-light text-sm font-medium"
+            className="flex items-center text-upi-blue dark:text-upi-blue-light text-sm font-medium"
           >
             See All
+            <ChevronRight className="h-4 w-4 ml-1" />
           </button>
         </div>
         
@@ -55,16 +60,17 @@ const Dashboard = () => {
           services={bbpsServices} 
           onServiceClick={(id) => handleServiceClick('bbps', id)}
         />
-      </div>
+      </section>
       
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
+      <section className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white">ONDC Services</h2>
           <button 
             onClick={() => navigate('/ondc')}
-            className="text-upi-blue dark:text-upi-blue-light text-sm font-medium"
+            className="flex items-center text-upi-blue dark:text-upi-blue-light text-sm font-medium"
           >
             See All
+            <ChevronRight className="h-4 w-4 ml-1" />
           </button>
         </div>
         
@@ -72,11 +78,11 @@ const Dashboard = () => {
           services={ondcServices} 
           onServiceClick={(id) => handleServiceClick('ondc', id)}
         />
-      </div>
+      </section>
       
-      <div className="flex space-x-4">
+      <section className="flex space-x-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
         <div 
-          className="flex-1 bg-gradient-to-r from-upi-blue to-upi-blue-light p-4 rounded-lg shadow-md cursor-pointer"
+          className="flex-1 bg-gradient-to-r from-upi-blue to-upi-blue-light p-5 rounded-xl shadow-md cursor-pointer"
           onClick={() => navigate('/financial')}
         >
           <h3 className="text-white font-medium mb-2">Financial Services</h3>
@@ -84,13 +90,13 @@ const Dashboard = () => {
         </div>
         
         <div 
-          className="flex-1 bg-gradient-to-r from-upi-green to-upi-green-light p-4 rounded-lg shadow-md cursor-pointer"
+          className="flex-1 bg-gradient-to-r from-upi-green to-upi-green-light p-5 rounded-xl shadow-md cursor-pointer"
           onClick={() => navigate('/bazaar')}
         >
           <h3 className="text-white font-medium mb-2">UPI Bazaar</h3>
           <p className="text-white text-opacity-80 text-sm">Shop electronics, footwear & more</p>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

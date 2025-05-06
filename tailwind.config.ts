@@ -19,6 +19,15 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: [
+					"-apple-system",
+					"BlinkMacSystemFont",
+					"'SF Pro Display'",
+					"'Helvetica Neue'",
+					"sans-serif"
+				],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -65,19 +74,19 @@ export default {
 				},
 				// UPI specific colors
 				'upi-blue': {
-					DEFAULT: '#4F46E5',
-					light: '#6366F1',
-					dark: '#4338CA',
+					DEFAULT: '#007AFF',
+					light: '#5AC8FA',
+					dark: '#0A84FF',
 				},
 				'upi-green': {
-					DEFAULT: '#10B981',
-					light: '#34D399',
-					dark: '#059669',
+					DEFAULT: '#34C759',
+					light: '#4CD964',
+					dark: '#30D158',
 				},
 				'upi-status': {
-					success: '#10B981',
-					pending: '#F59E0B',
-					failed: '#EF4444',
+					success: '#34C759',
+					pending: '#FF9500',
+					failed: '#FF3B30',
 				}
 			},
 			borderRadius: {
@@ -101,11 +110,22 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out'
 			}
 		}
 	},
