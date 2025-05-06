@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAppContext } from '../../contexts/AppContext';
 
 interface BalanceCardProps {
   balance: number;
@@ -8,6 +9,7 @@ interface BalanceCardProps {
 
 const BalanceCard: React.FC<BalanceCardProps> = ({ balance }) => {
   const [showBalance, setShowBalance] = React.useState(true);
+  const { darkMode } = useAppContext();
   
   const toggleBalance = () => {
     setShowBalance(!showBalance);

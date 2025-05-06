@@ -11,9 +11,10 @@ const Profile = () => {
   const navigate = useNavigate();
   
   const handleToggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    const newDarkModeValue = !darkMode;
+    setDarkMode(newDarkModeValue);
     toast({
-      title: darkMode ? "Light mode activated" : "Dark mode activated",
+      title: newDarkModeValue ? "Dark mode activated" : "Light mode activated",
       description: "Your display preference has been updated",
     });
   };
@@ -62,19 +63,19 @@ const Profile = () => {
         <div className="p-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
           <div className="flex items-center">
             <div className="bg-gray-100 dark:bg-gray-700 rounded-full p-2 mr-3">
-              {darkMode ? <Moon size={20} /> : <Sun size={20} />}
+              {darkMode ? <Moon size={20} className="text-white" /> : <Sun size={20} />}
             </div>
-            <span>{darkMode ? 'Dark Mode' : 'Light Mode'}</span>
+            <span className="text-gray-800 dark:text-white">{darkMode ? 'Dark Mode' : 'Light Mode'}</span>
           </div>
           <Switch checked={darkMode} onCheckedChange={handleToggleDarkMode} />
         </div>
         
         <button 
-          className="w-full p-4 border-b border-gray-100 dark:border-gray-700 flex items-center text-left"
+          className="w-full p-4 border-b border-gray-100 dark:border-gray-700 flex items-center text-left text-gray-800 dark:text-white"
           onClick={handleResetPIN}
         >
           <div className="bg-gray-100 dark:bg-gray-700 rounded-full p-2 mr-3">
-            <Key size={20} />
+            <Key size={20} className="text-gray-600 dark:text-gray-300" />
           </div>
           <span>Reset UPI PIN</span>
         </button>

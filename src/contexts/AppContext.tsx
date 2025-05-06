@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
   name: string;
@@ -37,7 +37,11 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  // Try to get dark mode preference from localStorage if exists
+  const storedDarkMode = typeof window !== 'undefined' ? 
+    localStorage.getItem('darkMode') === 'true' : false;
+  
+  const [darkMode, setDarkMode] = useState<boolean>(storedDarkMode);
   const [user, setUser] = useState<User | null>(null);
   const [isOnboarded, setIsOnboarded] = useState<boolean>(false);
   const [isPinSet, setIsPinSet] = useState<boolean>(false);
@@ -87,6 +91,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   ]);
 
+  // Update localStorage and apply class when darkMode changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('darkMode', darkMode.toString());
+      
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, [darkMode]);
+
+  const handleDarkMode = (mode: boolean) => {
+    setDarkMode(mode);
+  };
+
   const addTransaction = (transaction: Transaction) => {
     setTransactions(prev => [transaction, ...prev]);
   };
@@ -94,7 +115,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   return (
     <AppContext.Provider value={{ 
       darkMode, 
-      setDarkMode, 
+      setDarkMode: handleDarkMode, 
       user, 
       setUser, 
       isOnboarded, 
