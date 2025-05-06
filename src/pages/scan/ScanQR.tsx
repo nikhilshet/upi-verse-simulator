@@ -93,23 +93,25 @@ const ScanQR = () => {
         </div>
       </div>
       
-      <style jsx>{`
-        .animate-scan {
-          animation: scan 2s linear infinite;
-        }
-        
-        @keyframes scan {
-          0% {
-            transform: translateY(0);
+      <style>
+        {`
+          .animate-scan {
+            animation: scan 2s linear infinite;
           }
-          50% {
-            transform: translateY(calc(100% - 2px));
+          
+          @keyframes scan {
+            0% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(calc(100% - 2px));
+            }
+            100% {
+              transform: translateY(0);
+            }
           }
-          100% {
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };

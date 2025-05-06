@@ -69,11 +69,13 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick 
         <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
       </button>
       
-      <style jsx>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      <style>
+        {`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+        `}
+      </style>
     </div>
   );
 };
