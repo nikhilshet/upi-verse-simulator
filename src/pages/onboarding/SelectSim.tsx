@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { SimCard } from 'lucide-react';
+import { CreditCard } from 'lucide-react';
 
 interface SelectSimProps {
   onSelect: (sim: string) => void;
@@ -27,7 +27,7 @@ const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
           >
             <div className="flex items-center">
               <div className="bg-upi-blue-light dark:bg-upi-blue rounded-full p-2 mr-3">
-                <SimCard className="h-6 w-6 text-white" />
+                <CreditCard className="h-6 w-6 text-white" />
               </div>
               <div>
                 <p className="font-medium text-gray-800 dark:text-white">{sim.name}</p>
