@@ -28,7 +28,7 @@ const BBPS = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pt-6">
       <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Bill Payments</h1>
       
       <div className="relative mb-6">
