@@ -62,9 +62,8 @@ const EnterPin: React.FC<EnterPinProps> = ({ onComplete }) => {
                 {slots.map((slot, index) => (
                   <InputOTPSlot 
                     key={index} 
-                    {...slot} 
-                    className="w-14 h-16 text-2xl border-gray-300 dark:border-gray-600"
                     index={index}
+                    className="w-14 h-16 text-2xl border-gray-300 dark:border-gray-600"
                   />
                 ))}
               </InputOTPGroup>
