@@ -85,7 +85,7 @@ const ConfirmPin: React.FC<ConfirmPinProps> = ({ originalPin, onComplete, onBack
               <InputOTPGroup className="gap-4">
                 {slots.map((slot, index) => (
                   <InputOTPSlot 
-                    key={index} 
+                    key={index}
                     index={index}
                     className={`w-14 h-16 text-2xl border-gray-300 dark:border-gray-600 ${
                       isMatching && pin.length === 4 ? 'border-green-500 dark:border-green-500' : ''
