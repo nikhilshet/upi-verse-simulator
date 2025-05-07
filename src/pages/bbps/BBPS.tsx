@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Search, Zap, Smartphone, Tv, FlameKindling, Building2, Droplets, Shield, CreditCard, Car, GraduationCap, Building, Buildings } from 'lucide-react';
+import { Search, Zap, Smartphone, Tv, FlameKindling, Building2, Droplets, Shield, CreditCard, Car, GraduationCap, Building } from 'lucide-react';
 import { Input } from '../../components/ui/input';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ const BBPS = () => {
     { id: 'fastag', name: 'FASTag Recharge', icon: Car, color: 'bg-orange-500' },
     { id: 'education', name: 'School/College Fee', icon: GraduationCap, color: 'bg-cyan-500' },
     { id: 'municipal', name: 'Municipal Services', icon: Building, color: 'bg-lime-500' },
-    { id: 'housing', name: 'Housing Society', icon: Buildings, color: 'bg-emerald-500' }
+    { id: 'housing', name: 'Housing Society', icon: Building2, color: 'bg-emerald-500' }
   ];
   
   const handleServiceClick = (id: string) => {
