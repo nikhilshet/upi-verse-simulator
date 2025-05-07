@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../contexts/AppContext';
 import SelectSim from './SelectSim';
 import SelectBank from './SelectBank';
-import SetupPin from './SetupPin';
+import EnterPin from './EnterPin';
+import ConfirmPin from './ConfirmPin';
 import { Stepper, Step, StepLabel } from './Stepper';
 
 const Onboarding = () => {
@@ -21,7 +22,7 @@ const Onboarding = () => {
     balance: 12500,
   });
 
-  const steps = ['Select SIM', 'Select Bank', 'Set UPI PIN'];
+  const steps = ['Select SIM', 'Select Bank', 'Set UPI PIN', 'Confirm PIN'];
 
   const handleSimSelection = (sim: string) => {
     setUserData({ ...userData, selectedSim: sim });
@@ -33,12 +34,21 @@ const Onboarding = () => {
     setActiveStep(2);
   };
 
-  const handlePinSetup = (pin: string) => {
+  const handlePinEntered = (pin: string) => {
+    setUserData({ ...userData, upiPin: pin });
+    setActiveStep(3);
+  };
+
+  const handlePinConfirmed = (pin: string) => {
     setUserData({ ...userData, upiPin: pin });
     setUser({ ...userData, upiPin: pin });
     setIsPinSet(true);
     setIsOnboarded(true);
     navigate('/');
+  };
+
+  const handleBackToPinEntry = () => {
+    setActiveStep(2);
   };
 
   return (
@@ -59,7 +69,14 @@ const Onboarding = () => {
         <div className="mt-8">
           {activeStep === 0 && <SelectSim onSelect={handleSimSelection} />}
           {activeStep === 1 && <SelectBank sim={userData.selectedSim} onSelect={handleBankSelection} />}
-          {activeStep === 2 && <SetupPin onComplete={handlePinSetup} />}
+          {activeStep === 2 && <EnterPin onComplete={handlePinEntered} />}
+          {activeStep === 3 && (
+            <ConfirmPin 
+              originalPin={userData.upiPin} 
+              onComplete={handlePinConfirmed}
+              onBack={handleBackToPinEntry}
+            />
+          )}
         </div>
       </div>
     </div>
