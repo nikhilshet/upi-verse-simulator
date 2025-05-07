@@ -7,7 +7,7 @@ import {
   InputOTPGroup,
   InputOTPSlot 
 } from '@/components/ui/input-otp';
-import { Shield } from 'lucide-react';
+import { Shield, LockKeyhole } from 'lucide-react';
 
 interface EnterPinProps {
   onComplete: (pin: string) => void;
@@ -35,20 +35,20 @@ const EnterPin: React.FC<EnterPinProps> = ({ onComplete }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="mb-6">
-        <div className="w-16 h-16 bg-upi-blue/10 rounded-full flex items-center justify-center mb-4 mx-auto">
-          <Shield className="h-8 w-8 text-upi-blue" />
+      <div className="mb-8">
+        <div className="w-20 h-20 bg-gradient-to-br from-upi-blue to-upi-blue-dark/70 rounded-2xl flex items-center justify-center mb-5 mx-auto shadow-lg">
+          <LockKeyhole className="h-10 w-10 text-white" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 text-center">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center">
           Create your UPI PIN
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">
           Enter a 4-digit PIN for secure transactions
         </p>
       </div>
       
       <form onSubmit={handleSubmit} className="w-full space-y-8">
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-6">
           <InputOTP 
             maxLength={4}
             pattern="[0-9]*"
@@ -63,7 +63,6 @@ const EnterPin: React.FC<EnterPinProps> = ({ onComplete }) => {
                   <InputOTPSlot 
                     key={index}
                     index={index}
-                    className="w-14 h-16 text-2xl border-gray-300 dark:border-gray-600"
                   />
                 ))}
               </InputOTPGroup>
@@ -71,22 +70,24 @@ const EnterPin: React.FC<EnterPinProps> = ({ onComplete }) => {
           />
           
           {error && (
-            <p className="text-red-500 text-sm mt-2">{error}</p>
+            <p className="text-red-500 text-sm mt-2 animate-fade-in">{error}</p>
           )}
         </div>
         
         <Button 
           type="submit" 
-          className="w-full bg-upi-green hover:bg-upi-green-dark text-white"
+          className="w-full bg-gradient-to-r from-upi-blue to-upi-blue-dark text-white font-medium py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
           disabled={pin.length !== 4}
         >
           Continue
         </Button>
         
-        <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
-          Your PIN is secure and will be used for all UPI transactions.
-          Never share your PIN with anyone.
-        </p>
+        <div className="bg-gray-50 dark:bg-gray-800/40 rounded-xl p-4 mt-6">
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+            Your PIN is secure and will be used for all UPI transactions.
+            Never share your PIN with anyone.
+          </p>
+        </div>
       </form>
     </div>
   );

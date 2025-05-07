@@ -7,7 +7,7 @@ import {
   InputOTPGroup,
   InputOTPSlot 
 } from '@/components/ui/input-otp';
-import { Shield, ShieldCheck } from 'lucide-react';
+import { ShieldCheck, LockKeyhole } from 'lucide-react';
 
 interface ConfirmPinProps {
   originalPin: string;
@@ -54,23 +54,27 @@ const ConfirmPin: React.FC<ConfirmPinProps> = ({ originalPin, onComplete, onBack
 
   return (
     <div className="flex flex-col items-center">
-      <div className="mb-6">
-        <div className="w-16 h-16 bg-upi-blue/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+      <div className="mb-8">
+        <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-5 mx-auto shadow-lg transition-all duration-300 ${
+          isMatching && pin.length === 4
+            ? "bg-gradient-to-br from-upi-green to-upi-green-dark/70"
+            : "bg-gradient-to-br from-upi-blue to-upi-blue-dark/70"
+        }`}>
           {isMatching && pin.length === 4 ? 
-            <ShieldCheck className="h-8 w-8 text-upi-green" /> : 
-            <Shield className="h-8 w-8 text-upi-blue" />
+            <ShieldCheck className="h-10 w-10 text-white" /> : 
+            <LockKeyhole className="h-10 w-10 text-white" />
           }
         </div>
-        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 text-center">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center">
           Confirm your UPI PIN
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">
           Re-enter the same PIN to confirm
         </p>
       </div>
       
       <form onSubmit={handleSubmit} className="w-full space-y-8">
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-6">
           <InputOTP 
             maxLength={4}
             pattern="[0-9]*"
@@ -87,8 +91,8 @@ const ConfirmPin: React.FC<ConfirmPinProps> = ({ originalPin, onComplete, onBack
                   <InputOTPSlot 
                     key={index}
                     index={index}
-                    className={`w-14 h-16 text-2xl border-gray-300 dark:border-gray-600 ${
-                      isMatching && pin.length === 4 ? 'border-green-500 dark:border-green-500' : ''
+                    className={`${
+                      isMatching && pin.length === 4 ? 'border-upi-green ring-upi-green/30' : ''
                     }`}
                   />
                 ))}
@@ -97,14 +101,18 @@ const ConfirmPin: React.FC<ConfirmPinProps> = ({ originalPin, onComplete, onBack
           />
           
           {error && (
-            <p className="text-red-500 text-sm mt-2">{error}</p>
+            <p className="text-red-500 text-sm mt-2 animate-fade-in">{error}</p>
           )}
         </div>
         
         <div className="flex flex-col space-y-3">
           <Button 
             type="submit" 
-            className="w-full bg-upi-green hover:bg-upi-green-dark text-white"
+            className={`w-full font-medium py-6 rounded-xl shadow-md hover:shadow-lg transition-all ${
+              isMatching && pin.length === 4
+                ? "bg-gradient-to-r from-upi-green to-upi-green-dark text-white"
+                : "bg-gradient-to-r from-upi-blue to-upi-blue-dark text-white"
+            }`}
             disabled={pin.length !== 4 || pin !== originalPin}
           >
             Set PIN
@@ -114,16 +122,18 @@ const ConfirmPin: React.FC<ConfirmPinProps> = ({ originalPin, onComplete, onBack
             type="button"
             variant="outline"
             onClick={onBack}
-            className="w-full"
+            className="w-full rounded-xl border-gray-300 dark:border-gray-600 py-6"
           >
             Back
           </Button>
         </div>
         
-        <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
-          Your PIN is secure and will be used for all UPI transactions.
-          Never share your PIN with anyone.
-        </p>
+        <div className="bg-gray-50 dark:bg-gray-800/40 rounded-xl p-4 mt-6">
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+            Your PIN is secure and will be used for all UPI transactions.
+            Never share your PIN with anyone.
+          </p>
+        </div>
       </form>
     </div>
   );

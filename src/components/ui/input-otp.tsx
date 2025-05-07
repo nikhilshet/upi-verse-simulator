@@ -35,24 +35,33 @@ const InputOTPSlot = React.forwardRef<
 >(({ index, className, ...props }, ref) => {
   const inputOTPContext = React.useContext(OTPInputContext)
   
-  const char = inputOTPContext?.slots?.[index]?.char || ""
-  const isActive = inputOTPContext?.slots?.[index]?.isActive || false
-  const hasFakeCaret = inputOTPContext?.slots?.[index]?.hasFakeCaret || false
+  // Add a safety check to ensure context and slots exist before accessing them
+  const slot = inputOTPContext?.slots?.[index] || { char: "", hasFakeCaret: false, isActive: false }
+  const { char, hasFakeCaret, isActive } = slot
 
   return (
     <div
       ref={ref}
       className={cn(
-        "relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
-        isActive && "z-10 ring-2 ring-ring ring-offset-background",
+        "relative flex h-16 w-14 items-center justify-center rounded-xl border-2 bg-white/5 backdrop-blur-sm shadow-sm transition-all dark:bg-gray-800/30",
+        isActive ? "border-upi-blue ring-2 ring-upi-blue/30 scale-110" : "border-gray-200 dark:border-gray-700",
         className
       )}
       {...props}
     >
-      {char}
+      {char && (
+        <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 animate-fade-in">
+          {char}
+        </div>
+      )}
+      {!char && isActive && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="h-7 w-0.5 animate-caret-blink bg-upi-blue duration-700" />
+        </div>
+      )}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+          <div className="h-7 w-0.5 animate-caret-blink bg-foreground duration-700" />
         </div>
       )}
     </div>
@@ -65,7 +74,7 @@ const InputOTPSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<"div">
 >(({ ...props }, ref) => (
   <div ref={ref} role="separator" {...props}>
-    <Dot />
+    <Dot className="text-gray-400" />
   </div>
 ))
 InputOTPSeparator.displayName = "InputOTPSeparator"
