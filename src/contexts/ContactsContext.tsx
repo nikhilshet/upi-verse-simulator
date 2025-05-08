@@ -23,6 +23,7 @@ export interface PendingRequest {
   reason: string;
   timestamp: string;
   status: 'pending' | 'approved' | 'rejected';
+  expires : string
 }
 
 const defaultContacts: Contact[] = [
@@ -89,7 +90,9 @@ const defaultPendingRequests: PendingRequest[] = [
     amount: 459,
     reason: 'Food Order #ZMT12345',
     timestamp: new Date().toISOString(),
-    status: 'pending'
+    status: 'pending',
+    expires: new Date(new Date().getTime() + 15 * 60000).toISOString().slice(0, 16).replace('T', ' ')
+
   }
 ];
 

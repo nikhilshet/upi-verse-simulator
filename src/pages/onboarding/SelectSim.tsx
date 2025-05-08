@@ -18,9 +18,9 @@ const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
         Select your SIM card
       </h2>
       
-      <div className="grid grid-cols-1 gap-4 w-full">
+      <div className="flex gap-4 w-full">
         {sims.map((sim) => (
-          <button
+          <button 
             key={sim.id}
             className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
             onClick={() => onSelect(sim.id)}

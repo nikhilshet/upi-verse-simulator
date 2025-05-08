@@ -67,7 +67,7 @@ const SendMoneyAmount: React.FC<SendMoneyAmountProps> = ({
   const quickAmounts = [100, 200, 500, 1000, 2000, 5000];
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col justify-between pb-0">
       <Button
         variant="ghost"
         size="icon"
@@ -100,13 +100,13 @@ const SendMoneyAmount: React.FC<SendMoneyAmountProps> = ({
 
       <form onSubmit={handleSubmit} className="space-y-6 mt-6">
         <div className="relative">
-          <div className="flex items-baseline justify-center">
-            <span className="text-2xl mr-2 text-gray-700 dark:text-gray-300">₹</span>
+          <div className="flex justify-center items-baseline">
+            <span className="text-2xl mr-2 text-black dark:text-gray-300">₹</span>
             <input
               type="text"
               value={amount}
               onChange={handleAmountChange}
-              className="text-4xl font-bold bg-transparent border-none text-center w-full focus:outline-none focus:ring-0"
+              className="text-4xl w-full font-bold bg-transparent border-none focus:outline-none focus:ring-0"
               placeholder="0"
               inputMode="numeric"
               autoFocus={!initialAmount}
@@ -145,7 +145,8 @@ const SendMoneyAmount: React.FC<SendMoneyAmountProps> = ({
 
         <Button
           type="submit"
-          className="w-full py-6 text-lg bg-upi-blue hover:bg-upi-blue-dark"
+          className="w-full py-6 bg-gradient-to-r text-lg from-upi-blue-light to-upi-blue-dark shadow-lg shadow-cyan-500/20" 
+          // bg-gradient-to-r from-bg-blue to-upi-blue-dark shadow-lg shadow-cyan-500/20
           disabled={!amount || Number(amount) < 1 || !!error}
         >
           Pay ₹{amount || '0'}

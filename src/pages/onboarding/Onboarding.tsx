@@ -8,11 +8,22 @@ import EnterPin from './EnterPin';
 import ConfirmPin from './ConfirmPin';
 import { Stepper, Step, StepLabel } from './Stepper';
 
+interface User {
+  name: string;
+  phone: string;
+  email: string;
+  selectedSim: string;
+  selectedBank: string;
+  upiPin: string;
+  balance: number;
+  editable : boolean;
+}
+
 const Onboarding = () => {
   const { setUser, setIsOnboarded, setIsPinSet } = useAppContext();
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<User>({
     name: 'John Doe',
     phone: '9876543210',
     email: 'john.doe@example.com',
@@ -20,6 +31,7 @@ const Onboarding = () => {
     selectedBank: '',
     upiPin: '',
     balance: 12500,
+    editable: false
   });
 
   const steps = ['Select SIM', 'Select Bank', 'Set UPI PIN', 'Confirm PIN'];

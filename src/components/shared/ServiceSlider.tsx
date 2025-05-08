@@ -13,9 +13,10 @@ interface Service {
 interface ServiceSliderProps {
   services: Service[];
   onServiceClick: (id: string) => void;
+  classProps : string;
 }
 
-const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick }) => {
+const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick , classProps}) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   
   const scroll = (direction: 'left' | 'right') => {
@@ -59,7 +60,7 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick 
   // };
 
   return (
-    <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700/50">
+    <div className={`relative ${classProps}`}>
       {/* <button
         onClick={() => scroll('left')}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -76,12 +77,16 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick 
           
           <div
             key={service.id}
-            className="flex-none w-20 flex flex-col items-center bg-white dark:bg-gray-800 p-4 transition-all cursor-pointer"
+            // className="flex-none w-20 flex flex-col items-center bg-white dark:bg-gray-800 p-4 transition-all cursor-pointer"
+            className="flex-none w-20 flex flex-col items-center p-4 transition-all cursor-pointer"
             onClick={() => onServiceClick(service.id)}
           >
             {/* {getIconComponent(service.icon)} */}
-            <div className={`w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-white`}>
+              {/* <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white`}>  */}
+              <div className={`w-12 h-12 rounded-full flex items-center bg-white dark:bg-gray-800 justify-center text-white`}> 
+
               <service.icon className={service.color} size={30}/>
+              {/* className={service.color} */}
             </div>
             <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
               {service.name}

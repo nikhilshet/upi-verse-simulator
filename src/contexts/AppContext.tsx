@@ -9,6 +9,7 @@ interface User {
   selectedBank: string;
   upiPin: string;
   balance: number;
+  editable : boolean;
 }
 
 interface Transaction {

@@ -101,7 +101,7 @@ const FastagRecharge = () => {
   }
 
   if (currentStep === Step.PROCESSING) {
-    return <PaymentProcessing />;
+    return <PaymentProcessing amount={Number(amount)} recipient="Fast Tag"/>;
   }
 
   if (currentStep === Step.SUCCESS) {
@@ -168,8 +168,9 @@ const FastagRecharge = () => {
           </div>
           
           <Button
+            variant='glow'
             type="submit"
-            className="w-full py-6 bg-gradient-to-r from-upi-blue to-upi-blue-dark text-white"
+            className="w-full py-6 text-white"
             disabled={
               !vehicleNumber || 
               !amount || 

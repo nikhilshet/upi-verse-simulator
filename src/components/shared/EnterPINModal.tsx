@@ -98,7 +98,8 @@ const EnterPINModal: React.FC<EnterPINModalProps> = ({ onSuccess, onCancel }) =>
           
           <Button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-upi-blue to-upi-blue-dark text-white font-medium py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
+            variant='glow'
+            className="w-full text-white font-medium py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
             disabled={pin.length !== 4}
           >
             Confirm

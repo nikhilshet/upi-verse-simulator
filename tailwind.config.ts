@@ -76,8 +76,9 @@ export default {
 				// UPI specific colors
 				'upi-blue': {
 					DEFAULT: '#007AFF',
-					light: '#5AC8FA',
+					light: '#79d6ff',
 					dark: '#0A84FF',
+					shadow: "#abe5ff"
 				},
 				'upi-green': {
 					DEFAULT: '#34C759',

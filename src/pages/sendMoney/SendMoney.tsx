@@ -107,7 +107,10 @@ const SendMoney = () => {
   }
 
   if (currentStep === Step.PROCESSING) {
-    return <PaymentProcessing />;
+    return <PaymentProcessing 
+          amount={amount}
+          recipient={merchant ? merchant.name : selectedContact?.name || ''}
+    />;
   }
 
   if (currentStep === Step.SUCCESS) {
@@ -217,7 +220,7 @@ interface ContactCardProps {
 const ContactCard: React.FC<ContactCardProps> = ({ contact, onSelect }) => {
   return (
     <button
-      className="w-full flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+      className="w-full flex items-center justify-between p-4 rounded-lg border"
       onClick={() => onSelect(contact)}
     >
       <div className="flex items-center">

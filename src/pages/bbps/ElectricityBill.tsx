@@ -74,7 +74,7 @@ const ElectricityBill = () => {
   }
 
   if (currentStep === Step.PROCESSING) {
-    return <PaymentProcessing />;
+    return <PaymentProcessing amount={pendingBill.amount} recipient={pendingBill.provider.name} />;
   }
 
   if (currentStep === Step.SUCCESS) {
@@ -119,8 +119,9 @@ const ElectricityBill = () => {
               </div>
               
               <Button
+                variant='glow'
                 onClick={handlePayBill}
-                className="w-full bg-gradient-to-r from-upi-blue to-upi-blue-dark"
+                className="w-full"
               >
                 Pay Now
               </Button>

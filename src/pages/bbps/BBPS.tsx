@@ -9,6 +9,7 @@ const BBPS = () => {
   
   const services = [
     { id: 'electricity', name: 'Electricity', icon: Zap, color: 'bg-yellow-500' },
+    { id: 'fastag', name: 'FASTag Recharge', icon: Car, color: 'bg-orange-500' },
     { id: 'mobile', name: 'Mobile Recharge', icon: Smartphone, color: 'bg-blue-500' },
     { id: 'dth', name: 'DTH & Broadband', icon: Tv, color: 'bg-purple-500' },
     { id: 'gas', name: 'Gas Bill', icon: FlameKindling, color: 'bg-green-500' },
@@ -16,7 +17,6 @@ const BBPS = () => {
     { id: 'water', name: 'Water Bill', icon: Droplets, color: 'bg-blue-400' },
     { id: 'insurance', name: 'Insurance Premium', icon: Shield, color: 'bg-indigo-500' },
     { id: 'credit-card', name: 'Credit Card', icon: CreditCard, color: 'bg-red-500' },
-    { id: 'fastag', name: 'FASTag Recharge', icon: Car, color: 'bg-orange-500' },
     { id: 'education', name: 'School/College Fee', icon: GraduationCap, color: 'bg-cyan-500' },
     { id: 'municipal', name: 'Municipal Services', icon: Building, color: 'bg-lime-500' },
     { id: 'housing', name: 'Housing Society', icon: Building2, color: 'bg-emerald-500' }
@@ -50,7 +50,7 @@ const BBPS = () => {
           return (
             <button
               key={service.id}
-              className="flex flex-col items-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              className="flex flex-col items-center p-4 rounded-lg transition-shadow"
               onClick={() => handleServiceClick(service.id)}
             >
               <div className={`w-12 h-12 ${service.color} rounded-full flex items-center justify-center mb-2`}>
@@ -70,7 +70,7 @@ const BBPS = () => {
         </h3>
         
         <div className="space-y-4">
-          <div className="flex items-center justify-between bg-white dark:bg-gray-700 p-3 rounded-md">
+          <div className="flex items-center justify-between p-3 rounded-md">
             <div className="flex items-center">
               <div className="bg-yellow-500 rounded-full p-2 mr-3">
                 <Zap className="text-white" size={16} />
@@ -83,7 +83,7 @@ const BBPS = () => {
             <p className="text-sm font-medium">₹1,250</p>
           </div>
           
-          <div className="flex items-center justify-between bg-white dark:bg-gray-700 p-3 rounded-md">
+          <div className="flex items-center justify-between p-3 rounded-md">
             <div className="flex items-center">
               <div className="bg-blue-500 rounded-full p-2 mr-3">
                 <Smartphone className="text-white" size={16} />

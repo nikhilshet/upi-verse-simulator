@@ -7,6 +7,7 @@ import FeatureGrid from './FeatureGrid';
 import ServiceSlider from '../../components/shared/ServiceSlider';
 import { BadgeAlert, Car, ChevronRight, ShoppingBag } from 'lucide-react';
 import { Shield, Droplets, Building2, FlameKindling, Tv, Smartphone, Zap, SmartphoneCharging } from 'lucide-react';
+import { Banknote, BarChart3, LineChart, TrendingUp, IndianRupee } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useAppContext();
@@ -23,17 +24,41 @@ const Dashboard = () => {
     { id: 'insurance', name: 'Insurance Premium', icon: Shield, color: 'text-indigo-500' },
   ]
 
-  // ONDC services
+  // // ONDC services
+  // const ondcServices = [
+  //   { id: 'mobility', name: 'Mobility', icon: Car ,color:'text-white'},
+  //   { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag , color:'text-white' },
+  //   { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert , color:'text-white' },
+  //   { id: 'mobility1', name: 'Mobility', icon: Car ,color:'text-white'},
+  //   { id: 'ecommerce1', name: 'E-Commerce', icon: ShoppingBag , color:'text-white' },
+  //   { id: 'quickecom1', name: 'Quick Ecom', icon: BadgeAlert , color:'text-white' }
+  // ];
 
+  // //mf service
+  // const mutualFundsServices = [
+  //   { id: 'mutualfunds', name: 'Mutual Funds', icon: Banknote, color: 'text-white' },
+  //   { id: 'largecap', name: 'Large Cap', icon: BarChart3, color: 'text-white' },
+  //   { id: 'midcap', name: 'Mid Cap', icon: LineChart, color: 'text-white' },
+  //   { id: 'smallcap', name: 'Small Cap', icon: TrendingUp, color: 'text-white' },
+  //   { id: 'start500', name: 'Start with ₹500', icon: IndianRupee, color: 'text-white' }
+  // ];
   const ondcServices = [
     { id: 'mobility', name: 'Mobility', icon: Car ,color:'text-blue-500'},
     { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
     { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' },
-    { id: 'mobility', name: 'Mobility', icon: Car ,color:'text-blue-500'},
-    { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
-    { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' }
+    { id: 'mobility1', name: 'Mobility', icon: Car ,color:'text-blue-500'},
+    { id: 'ecommerce1', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
+    { id: 'quickecom1', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' }
   ];
 
+  //mf service
+  const mutualFundsServices = [
+    { id: 'mutualfunds', name: 'Mutual Funds', icon: Banknote, color: 'text-green-600' },
+    { id: 'largecap', name: 'Large Cap', icon: BarChart3, color: 'text-blue-600' },
+    { id: 'midcap', name: 'Mid Cap', icon: LineChart, color: 'text-purple-600' },
+    { id: 'smallcap', name: 'Small Cap', icon: TrendingUp, color: 'text-pink-600' },
+    { id: 'start500', name: 'Start with ₹500', icon: IndianRupee, color: 'text-yellow-600' }
+  ];
   const handleServiceClick = (section: string, id: string) => {
     if (section === 'bbps') {
       navigate('/bbps');
@@ -66,6 +91,7 @@ const Dashboard = () => {
         <ServiceSlider 
           services={bbpsServices} 
           onServiceClick={(id) => handleServiceClick('bbps', id)}
+          classProps = "bg-white dark:bg-gray-800 rounded-md"
         />
       </section>
       
@@ -80,21 +106,25 @@ const Dashboard = () => {
             <ChevronRight className="h-4 w-4 ml-1" />
           </button>
         </div>
-        
+        <div className='bg-white dark:bg-gray-800 rounded-md'> 
         <ServiceSlider 
           services={ondcServices} 
           onServiceClick={(id) => handleServiceClick('ondc', id)}
+          classProps = ""
+
         />
+        <ServiceSlider
+          services={mutualFundsServices}
+          onServiceClick={(id)=>handleServiceClick('' , id)}
+          classProps = ""
+
+        />
+        </div>
+       
       </section>
       
       <section className="flex flex-col space-y-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-        <div 
-          className="bg-gradient-to-r from-upi-blue to-upi-blue-light p-5 rounded-xl shadow-md cursor-pointer"
-          onClick={() => navigate('/financial')}
-        >
-          <h3 className="text-white font-medium mb-2">Financial Services</h3>
-          <p className="text-white text-opacity-80 text-sm">Explore mutual funds, insurance & loans</p>
-        </div>
+      
         
         <div 
           className="bg-gradient-to-r from-upi-green to-upi-green-light p-5 rounded-xl shadow-md cursor-pointer"
