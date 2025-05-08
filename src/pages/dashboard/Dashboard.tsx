@@ -12,7 +12,7 @@ import { Banknote, BarChart3, LineChart, TrendingUp, IndianRupee } from 'lucide-
 const Dashboard = () => {
   const { user } = useAppContext();
   const navigate = useNavigate();
-  
+
   // BBPS services
   const bbpsServices = [
     { id: 'electricity', name: 'Electricity', icon: Zap, color: 'text-yellow-500' },
@@ -43,12 +43,12 @@ const Dashboard = () => {
   //   { id: 'start500', name: 'Start with ₹500', icon: IndianRupee, color: 'text-white' }
   // ];
   const ondcServices = [
-    { id: 'mobility', name: 'Mobility', icon: Car ,color:'text-blue-500'},
-    { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
-    { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' },
-    { id: 'mobility1', name: 'Mobility', icon: Car ,color:'text-blue-500'},
-    { id: 'ecommerce1', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
-    { id: 'quickecom1', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' }
+    { id: 'mobility', name: 'Mobility', icon: Car, color: 'text-blue-500' },
+    { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag, color: 'text-yellow-500' },
+    { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert, color: 'text-pink-500' },
+    { id: 'mobility1', name: 'Mobility', icon: Car, color: 'text-blue-500' },
+    { id: 'ecommerce1', name: 'E-Commerce', icon: ShoppingBag, color: 'text-yellow-500' },
+    { id: 'quickecom1', name: 'Quick Ecom', icon: BadgeAlert, color: 'text-pink-500' }
   ];
 
   //mf service
@@ -70,16 +70,16 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col space-y-7">
       <BalanceCard balance={user?.balance || 0} />
-      
+
       <section className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
         <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">UPI Services</h2>
         <FeatureGrid />
       </section>
-      
+
       <section className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
         <div className="flex justify-between items-center mb-4 ">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Bill Payments</h2>
-          <button 
+          <button
             onClick={() => navigate('/bbps')}
             className="flex items-center text-upi-blue dark:text-upi-blue-light text-sm font-medium"
           >
@@ -87,18 +87,18 @@ const Dashboard = () => {
             <ChevronRight className="h-4 w-4 ml-1" />
           </button>
         </div>
-        
-        <ServiceSlider 
-          services={bbpsServices} 
+
+        <ServiceSlider
+          services={bbpsServices}
           onServiceClick={(id) => handleServiceClick('bbps', id)}
-          classProps = "bg-white dark:bg-gray-800 rounded-md"
+          classProps="bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90"
         />
       </section>
-      
+
       <section className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white">ONDC Services</h2>
-          <button 
+          <button
             onClick={() => navigate('/ondc')}
             className="flex items-center text-upi-blue dark:text-upi-blue-light text-sm font-medium"
           >
@@ -106,27 +106,27 @@ const Dashboard = () => {
             <ChevronRight className="h-4 w-4 ml-1" />
           </button>
         </div>
-        <div className='bg-white dark:bg-gray-800 rounded-md'> 
-        <ServiceSlider 
-          services={ondcServices} 
-          onServiceClick={(id) => handleServiceClick('ondc', id)}
-          classProps = ""
+        <div className='bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90 bg-white dark:bg-gray-800 rounded-md py-2'>
+          <ServiceSlider
+            services={ondcServices}
+            onServiceClick={(id) => handleServiceClick('ondc', id)}
+            classProps=""
 
-        />
-        <ServiceSlider
-          services={mutualFundsServices}
-          onServiceClick={(id)=>handleServiceClick('' , id)}
-          classProps = ""
+          />
+          <ServiceSlider
+            services={mutualFundsServices}
+            onServiceClick={(id) => handleServiceClick('', id)}
+            classProps=""
 
-        />
+          />
         </div>
-       
+
       </section>
-      
+
       <section className="flex flex-col space-y-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-      
-        
-        <div 
+
+
+        <div
           className="bg-gradient-to-r from-upi-green to-upi-green-light p-5 rounded-xl shadow-md cursor-pointer"
           onClick={() => navigate('/bazaar')}
         >

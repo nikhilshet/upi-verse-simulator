@@ -59,7 +59,7 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ amount, recipient, onDo
       </div>
      
       
-      <div className="w-full bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 mb-8">
+      <div className="w-full bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
         <div className="flex flex-col space-y-4">
           
           <div className="flex flex-col">
@@ -82,7 +82,7 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ amount, recipient, onDo
       <Button
         onClick={onDone}
         variant='glow'
-        className="w-full bg-gradient-to-r from-bg-blue to-upi-blue-dark text-white font-medium py-6 rounded-xl"
+        className="w-full text-lg font-medium text-white font-medium py-6 rounded-xl"
       >
         Done
       </Button>
