@@ -1,35 +1,55 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LucideCamera, X, ChevronDown } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { useAppContext } from '../../contexts/AppContext';
 import { toast } from '@/hooks/use-toast';
 
+enum ScanState {
+  SCANNING = 'scanning',
+  PROCESSING = 'processing'
+}
+
 const ScanQR = () => {
   const { user } = useAppContext();
   const navigate = useNavigate();
-  const [scanning, setScanning] = useState(true);
+  const [scanState, setScanState] = useState<ScanState>(ScanState.SCANNING);
 
   const handleClose = () => {
     navigate(-1);
   };
 
-  const simulateQRScan = () => {
-    setScanning(false);
-    
-    // Simulate processing
-    setTimeout(() => {
-      toast({
-        title: "QR Scanned Successfully",
-        description: "Redirecting to payment page...",
-      });
+  useEffect(() => {
+    if (scanState === ScanState.PROCESSING) {
+      const timer = setTimeout(() => {
+        toast({
+          title: "QR Scanned Successfully",
+          description: "Redirecting to payment page...",
+        });
+        
+        // Simulate redirect to payment page with merchant details
+        setTimeout(() => {
+          navigate('/send-money', { 
+            state: { 
+              merchant: {
+                id: 'merchant123',
+                name: 'Coffee Shop',
+                upiId: 'coffeeshop@okicici',
+                image: 'https://cdn-icons-png.flaticon.com/512/772/772839.png',
+                amount: 120
+              }
+            }
+          });
+        }, 1500);
+      }, 4000);
       
-      // Simulate redirect to payment page
-      setTimeout(() => {
-        navigate('/send-money', { state: { recipient: 'Coffee Shop', amount: 120 } });
-      }, 1500);
-    }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [scanState, navigate]);
+
+  const simulateQRScan = () => {
+    setScanState(ScanState.PROCESSING);
   };
 
   return (
@@ -48,7 +68,7 @@ const ScanQR = () => {
       </div>
       
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        {scanning ? (
+        {scanState === ScanState.SCANNING ? (
           <>
             <div className="w-64 h-64 border-2 border-white rounded-lg relative">
               <div className="absolute inset-0 border-t-2 border-upi-blue animate-scan" />

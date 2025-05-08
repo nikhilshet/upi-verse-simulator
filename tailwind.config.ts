@@ -21,6 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: [
+					"'Neue Haas Grotesk Display Pro'",
 					"-apple-system",
 					"BlinkMacSystemFont",
 					"'SF Pro Display'",
