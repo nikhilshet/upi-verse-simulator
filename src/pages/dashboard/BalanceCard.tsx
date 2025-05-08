@@ -24,7 +24,7 @@ const BalanceCard: React.FC<BalanceCardProps> = ({ balance }) => {
   };
 
   return (
-    <div className="balance-card relative p-6 overflow-hidden animate-fade-in">
+    <div className="balance-card relative p-6 overflow-hidden animate-fade-in bg-red-300">
       <div className="absolute top-0 right-0 w-32 h-32 -mt-8 -mr-8 bg-white opacity-10 rounded-full"></div>
       <div className="absolute bottom-0 left-0 w-24 h-24 -mb-8 -ml-8 bg-white opacity-10 rounded-full"></div>
       

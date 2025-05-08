@@ -18,6 +18,7 @@ import Financial from "./pages/financial/Financial";
 import Onboarding from "./pages/onboarding/Onboarding";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./components/layout/AppLayout";
+import Transaction from "./pages/singleTransaction/Transaction";
 
 // Create Mock pages for UPI actions
 const SendMoney = () => <div className="p-4">Send Money Page</div>;
@@ -47,7 +48,8 @@ const App = () => {
                 <Route path="/" element={<Dashboard />} />
                 
                 {/* Main Navigation Routes */}
-                <Route path="/history" element={<History />} />
+                <Route path="/history" element={<History />}/>
+                <Route path="/history/:id" element={<Transaction />} />
                 <Route path="/scan-qr" element={<ScanQR />} />
                 <Route path="/profile" element={<Profile />} />
                 

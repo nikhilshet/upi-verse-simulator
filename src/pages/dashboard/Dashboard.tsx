@@ -5,7 +5,8 @@ import { useAppContext } from '../../contexts/AppContext';
 import BalanceCard from './BalanceCard';
 import FeatureGrid from './FeatureGrid';
 import ServiceSlider from '../../components/shared/ServiceSlider';
-import { ChevronRight } from 'lucide-react';
+import { BadgeAlert, Car, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Shield, Droplets, Building2, FlameKindling, Tv, Smartphone, Zap, SmartphoneCharging } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useAppContext();
@@ -13,18 +14,24 @@ const Dashboard = () => {
   
   // BBPS services
   const bbpsServices = [
-    { id: 'electricity', name: 'Electricity', icon: 'electricity' },
-    { id: 'mobile', name: 'Mobile Recharge', icon: 'mobile-recharge' },
-    { id: 'dth', name: 'DTH & Broadband', icon: 'dth-broadband' },
-    { id: 'gas', name: 'Gas Bill', icon: 'gas-bill' },
-    { id: 'rent', name: 'Rent Payment', icon: 'rent-payment' }
-  ];
+    { id: 'electricity', name: 'Electricity', icon: Zap, color: 'text-yellow-500' },
+    { id: 'mobile', name: 'Mobile Recharge', icon: Smartphone, color: 'text-blue-500' },
+    { id: 'dth', name: 'DTH & Broadband', icon: Tv, color: 'text-purple-500' },
+    { id: 'gas', name: 'Gas Bill', icon: FlameKindling, color: 'text-green-500' },
+    { id: 'rent', name: 'Rent Payment', icon: Building2, color: 'text-pink-500' },
+    { id: 'water', name: 'Water Bill', icon: Droplets, color: 'text-blue-400' },
+    { id: 'insurance', name: 'Insurance Premium', icon: Shield, color: 'text-indigo-500' },
+  ]
 
   // ONDC services
+
   const ondcServices = [
-    { id: 'mobility', name: 'Mobility', icon: 'mobility' },
-    { id: 'ecommerce', name: 'E-Commerce', icon: 'e-commerce' },
-    { id: 'quickecom', name: 'Quick Ecom', icon: 'quick-ecom' }
+    { id: 'mobility', name: 'Mobility', icon: Car ,color:'text-blue-500'},
+    { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
+    { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' },
+    { id: 'mobility', name: 'Mobility', icon: Car ,color:'text-blue-500'},
+    { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag , color:'text-yellow-500' },
+    { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert , color:'text-pink-500' }
   ];
 
   const handleServiceClick = (section: string, id: string) => {
@@ -45,7 +52,7 @@ const Dashboard = () => {
       </section>
       
       <section className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 ">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Bill Payments</h2>
           <button 
             onClick={() => navigate('/bbps')}
@@ -80,9 +87,9 @@ const Dashboard = () => {
         />
       </section>
       
-      <section className="flex space-x-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+      <section className="flex flex-col space-y-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
         <div 
-          className="flex-1 bg-gradient-to-r from-upi-blue to-upi-blue-light p-5 rounded-xl shadow-md cursor-pointer"
+          className="bg-gradient-to-r from-upi-blue to-upi-blue-light p-5 rounded-xl shadow-md cursor-pointer"
           onClick={() => navigate('/financial')}
         >
           <h3 className="text-white font-medium mb-2">Financial Services</h3>
@@ -90,7 +97,7 @@ const Dashboard = () => {
         </div>
         
         <div 
-          className="flex-1 bg-gradient-to-r from-upi-green to-upi-green-light p-5 rounded-xl shadow-md cursor-pointer"
+          className="bg-gradient-to-r from-upi-green to-upi-green-light p-5 rounded-xl shadow-md cursor-pointer"
           onClick={() => navigate('/bazaar')}
         >
           <h3 className="text-white font-medium mb-2">UPI Bazaar</h3>

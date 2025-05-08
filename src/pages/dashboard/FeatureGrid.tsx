@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Send, ArrowDownLeft, RefreshCw, Check, QrCode, Smartphone, Zap } from 'lucide-react';
+import { Send, ArrowDownLeft, RefreshCw, Check, QrCode, Smartphone, Zap, SmartphoneCharging } from 'lucide-react';
+import path from 'path';
 
 const FeatureGrid = () => {
   const navigate = useNavigate();
@@ -13,7 +14,8 @@ const FeatureGrid = () => {
     { id: 'approve', name: 'Approve Request', icon: Check, path: '/approve-request' },
     { id: 'scan', name: 'Scan & Pay', icon: QrCode, path: '/scan-qr' },
     { id: 'tap', name: 'Tap to Pay', icon: Smartphone, path: '/tap-to-pay' },
-    { id: 'lite', name: 'UPI Lite', icon: Zap, path: '/upi-lite' }
+    { id: 'lite', name: 'UPI Lite', icon: Zap, path: '/upi-lite' },
+    {id:'recharge' , name:'Mobile Recharge' , icon:SmartphoneCharging ,path:'/upi-lite'}
   ];
   
   const handleFeatureClick = (path: string) => {
@@ -21,11 +23,11 @@ const FeatureGrid = () => {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4 p-3 bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90">
       {features.map((feature) => (
         <button
           key={feature.id}
-          className="flex flex-col items-center justify-center p-3 bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700/50 hover:border-upi-blue dark:hover:border-upi-blue-light transition-all"
+          className="flex flex-col items-center justify-between p-3"
           onClick={() => handleFeatureClick(feature.path)}
         >
           <div className="w-12 h-12 rounded-full bg-gray-100/80 dark:bg-gray-700/80 flex items-center justify-center mb-2">

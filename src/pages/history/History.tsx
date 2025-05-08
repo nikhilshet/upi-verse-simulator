@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../contexts/AppContext';
 import { Filter } from 'lucide-react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const History = () => {
   const { transactions } = useAppContext();
   const [activeFilter, setActiveFilter] = useState<string>('all');
-
+  const navigate = useNavigate()
   const filters = [
     { id: 'all', name: 'All' },
     { id: 'send', name: 'Send' },
@@ -78,9 +79,10 @@ const History = () => {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
         {filteredTransactions.length > 0 ? (
           filteredTransactions.map((tx) => (
-            <div 
+              <div 
               key={tx.id}
               className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-700 last:border-0"
+              onClick={()=>navigate(`/history/${tx.id}`)}
             >
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center mr-3">
@@ -94,7 +96,7 @@ const History = () => {
                 </div>
               </div>
               <div className="text-right">
-                <p className={`font-semibold ${tx.type === 'receive' ? 'text-upi-status-success' : ''}`}>
+                <p className={`font-medium ${tx.type === 'receive' ? 'text-upi-status-success' : ''}`}>
                   {tx.type === 'receive' ? '+' : '-'} ₹{tx.amount}
                 </p>
                 <p className={`text-xs ${getStatusColor(tx.status)}`}>
