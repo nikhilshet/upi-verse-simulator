@@ -3,11 +3,16 @@ import React, { useState } from "react"
 import { Formik , Form , Field , useFormikContext} from 'formik';
 import { Button } from "@/components/ui/button";
 
+interface formValue{
+    name: string;
+    phone: string;
+    email: string;
+}
 
 function EditProfile(){
     const {user , setUser} = useAppContext()
     const [edit , setEdit]= useState(true);
-    const [formValue , setFormValue] = useState(user)
+    const [formValue , setFormValue] = useState<formValue>({name:user.name , phone:user.phone , email:user.email})
     const handleSubmit = ()=>{
         // setUser({...user  , name:})
         setUser({...user , name:formValue.name , email:formValue.email , phone : formValue.phone})
@@ -18,13 +23,13 @@ function EditProfile(){
         <div>
             <div className="flex justify-between">
             <h1 className="text-2xl font-bold mb-6">Edit Profile</h1>
-            <div onClick={()=>setUser({...user , editable : !user.editable})}>X</div>
+            <div className="w-12 h-12" onClick={()=>setUser({...user , editable : !user.editable})}>X</div>
             </div>
             <Formik
                 initialValues={{name:user.name , phone:user.phone , email:user.email}}
                 onSubmit={(values , {setSubmitting} )=>{
-                    console.log(values)
-                    setFormValue({...user , name:formValue.name , email:formValue.email , phone : formValue.phone})
+                    console.log(" form values",values)
+                    setFormValue(values)
                     setTimeout(()=>{
                         setSubmitting(false)
                     },2000)

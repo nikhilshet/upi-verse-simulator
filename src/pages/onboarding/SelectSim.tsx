@@ -26,7 +26,7 @@ const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
           >
             <div className="flex items-center">
               <div>
-              <img src={`/${sim.name}.svg`} className="h-12 w-12 text-white" />
+              <img src={`/${sim.name}.svg`} className="h-8 w-8 text-white" />
               </div>
             </div>
             <div>
