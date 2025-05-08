@@ -8,7 +8,7 @@ interface SelectSimProps {
 
 const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
   const sims = [
-    { id: 'sim1', name: 'Airtel', number: '9876543210' },
+    { id: 'sim1', name: 'Airtel', number: '9876543211' },
     { id: 'sim2', name: 'Jio', number: '8765432109' }
   ];
 
