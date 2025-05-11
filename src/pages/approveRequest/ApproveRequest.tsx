@@ -179,7 +179,7 @@ const RequestCard: React.FC<RequestCardProps> = ({ request, onApprove, onReject 
           <Button
             onClick={onReject}
             variant="outline"
-            className="flex-1 py-6 border border-gray-300 hover:bg-gray-50 dark:border-gray-600 hover:text-black"
+            className="flex-1 text-md py-6 border border-gray-300 hover:bg-gray-50 dark:border-gray-600 hover:text-black"
           >
             <X size={16} className="mr-2" /> Decline
           </Button>
@@ -187,7 +187,7 @@ const RequestCard: React.FC<RequestCardProps> = ({ request, onApprove, onReject 
           <Button
             variant='glow'
             onClick={onApprove}
-            className="flex-1 py-6"
+            className="text-white text-md flex-1 py-6"
           >
             <Check size={16} className="mr-2" /> Pay Now
           </Button>

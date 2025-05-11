@@ -3,6 +3,7 @@ import React from 'react';
 import { Search, Zap, Smartphone, Tv, FlameKindling, Building2, Droplets, Shield, CreditCard, Car, GraduationCap, Building } from 'lucide-react';
 import { Input } from '../../components/ui/input';
 import { useNavigate } from 'react-router-dom';
+import { toast } from '@/hooks/use-toast';
 
 const BBPS = () => {
   const navigate = useNavigate();
@@ -22,9 +23,17 @@ const BBPS = () => {
     { id: 'housing', name: 'Housing Society', icon: Building2, color: 'bg-emerald-500' }
   ];
   
-  const handleServiceClick = (id: string) => {
+  const handleServiceClick = (id: string , name:string) => {
     // In a real app, this would navigate to the specific service page
-    navigate(`/bbps/${id}`);
+    if(id === 'electricity' || id === "fastag"){
+      navigate(`/bbps/${id}`);
+    }
+    else{
+      toast({
+        title: "Coming Soon",
+        description: `${name} Feature Coming Soon`,
+    });
+    }
   };
 
   return (
@@ -51,7 +60,7 @@ const BBPS = () => {
             <button
               key={service.id}
               className="flex flex-col items-center p-4 rounded-lg transition-shadow"
-              onClick={() => handleServiceClick(service.id)}
+              onClick={() => handleServiceClick(service.id , service.name)}
             >
               <div className={`w-12 h-12 ${service.color} rounded-full flex items-center justify-center mb-2`}>
                 <IconComponent className="text-white" size={20} />

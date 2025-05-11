@@ -102,7 +102,7 @@ const ElectricityBill = () => {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/20 rounded-full flex items-center justify-center mr-3">
-                    <Zap className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                    <img src={`/${pendingBill.provider.id}.svg`} className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>
                     <h3 className="font-bold">{pendingBill.provider.name}</h3>
@@ -141,13 +141,12 @@ const ElectricityBill = () => {
               className="w-full flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center overflow-hidden mr-4">
                   <img 
-                    src={provider.logo} 
+                    src={`/${provider.id}.svg`} 
                     alt={provider.name}
-                    className="w-6 h-6 object-contain" 
+                    className="w-8 h-18" 
                   />
-                </div>
+                
                 <div className="text-left">
                   <p className="font-medium">{provider.name}</p>
                   <p className="text-xs text-gray-500">Tap to select</p>

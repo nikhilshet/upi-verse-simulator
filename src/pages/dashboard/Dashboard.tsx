@@ -8,6 +8,8 @@ import ServiceSlider from '../../components/shared/ServiceSlider';
 import { BadgeAlert, Car, ChevronRight, ShoppingBag } from 'lucide-react';
 import { Shield, Droplets, Building2, FlameKindling, Tv, Smartphone, Zap, SmartphoneCharging } from 'lucide-react';
 import { Banknote, BarChart3, LineChart, TrendingUp, IndianRupee } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+
 
 const Dashboard = () => {
   const { user } = useAppContext();
@@ -16,6 +18,8 @@ const Dashboard = () => {
   // BBPS services
   const bbpsServices = [
     { id: 'electricity', name: 'Electricity', icon: Zap, color: 'text-yellow-500' },
+        { id: 'fastag', name: 'FASTag Recharge', icon: Car, color: 'text-orange-500' },
+    
     { id: 'mobile', name: 'Mobile Recharge', icon: Smartphone, color: 'text-blue-500' },
     { id: 'dth', name: 'DTH & Broadband', icon: Tv, color: 'text-purple-500' },
     { id: 'gas', name: 'Gas Bill', icon: FlameKindling, color: 'text-green-500' },
@@ -44,6 +48,7 @@ const Dashboard = () => {
   // ];
   const ondcServices = [
     { id: 'mobility', name: 'Mobility', icon: Car, color: 'text-blue-500' },
+    
     { id: 'ecommerce', name: 'E-Commerce', icon: ShoppingBag, color: 'text-yellow-500' },
     { id: 'quickecom', name: 'Quick Ecom', icon: BadgeAlert, color: 'text-pink-500' },
     { id: 'mobility1', name: 'Mobility', icon: Car, color: 'text-blue-500' },
@@ -59,13 +64,26 @@ const Dashboard = () => {
     { id: 'smallcap', name: 'Small Cap', icon: TrendingUp, color: 'text-pink-600' },
     { id: 'start500', name: 'Start with ₹500', icon: IndianRupee, color: 'text-yellow-600' }
   ];
-  const handleServiceClick = (section: string, id: string) => {
-    if (section === 'bbps') {
-      navigate('/bbps');
-    } else if (section === 'ondc') {
-      navigate('/ondc');
-    }
-  };
+  // const handleServiceClick = (section: string, id: string) => {
+  //   if (section === 'bbps') {
+  //     navigate('/bbps');
+  //   } else if (section === 'ondc') {
+  //     navigate('/ondc');
+  //   }
+  // };
+
+  // const handleServiceClick = (id: string , name:string) => {
+  //   // In a real app, this would navigate to the specific service page
+  //   if(id === 'electricity' || id === "fastag"){
+  //     navigate(`/bbps/${id}`);
+  //   }
+  //   else{
+  //     toast({
+  //       title: "Coming Soon",
+  //       description: `${name} Feature Coming Soon`,
+  //   });
+  //   }
+  // };
 
   return (
     <div className="flex flex-col space-y-7">
@@ -90,7 +108,7 @@ const Dashboard = () => {
 
         <ServiceSlider
           services={bbpsServices}
-          onServiceClick={(id) => handleServiceClick('bbps', id)}
+          // onServiceClick={(id) => handleServiceClick()}
           classProps="bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90"
         />
       </section>
@@ -109,13 +127,13 @@ const Dashboard = () => {
         <div className='bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90 bg-white dark:bg-gray-800 rounded-md py-2'>
           <ServiceSlider
             services={ondcServices}
-            onServiceClick={(id) => handleServiceClick('ondc', id)}
+            // onServiceClick={(id) => handleServiceClick('ondc', id)}
             classProps=""
 
           />
           <ServiceSlider
             services={mutualFundsServices}
-            onServiceClick={(id) => handleServiceClick('', id)}
+            // onServiceClick={(id) => handleServiceClick('', id)}
             classProps=""
 
           />

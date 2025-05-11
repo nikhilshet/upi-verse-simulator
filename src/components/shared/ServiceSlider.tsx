@@ -2,6 +2,8 @@
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { LucideIcon } from "lucide-react";
+import { Navigate, useNavigate } from 'react-router-dom';
+import { toast } from '@/hooks/use-toast';
 
 interface Service {
   id: string;
@@ -12,13 +14,13 @@ interface Service {
 
 interface ServiceSliderProps {
   services: Service[];
-  onServiceClick: (id: string) => void;
   classProps : string;
 }
 
-const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick , classProps}) => {
+
+const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, classProps}) => {
   const sliderRef = useRef<HTMLDivElement>(null);
-  
+  const navigate = useNavigate();
   const scroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
       const { current } = sliderRef;
@@ -27,6 +29,20 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick 
     }
   };
   
+  function onServiceClick(id:string , name:string){
+    if(id === "electricity" || id === "fasttag"){
+      navigate(`/bbps/${id}`)
+    }else if(id === "mutualfunds" ){
+      navigate(`/ondc/${id}`)
+    }
+    else{
+      toast({
+        title:"Coming Soon",
+        description : `${name} is Coming soon`
+      })
+    }
+  }
+
   console.log(services)
   // Get color based on service icon name
   // const getIconColor = (iconName: string) => {
@@ -79,13 +95,13 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, onServiceClick 
             key={service.id}
             // className="flex-none w-20 flex flex-col items-center bg-white dark:bg-gray-800 p-4 transition-all cursor-pointer"
             className="flex-none w-20 flex flex-col items-center p-4 transition-all cursor-pointer"
-            onClick={() => onServiceClick(service.id)}
+            onClick={()=>onServiceClick(service.id , service.name)}
           >
             {/* {getIconComponent(service.icon)} */}
               {/* <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white`}>  */}
               <div className={`w-12 h-12 rounded-full flex items-center bg-white dark:bg-gray-800 justify-center text-white`}> 
 
-              <service.icon className={service.color} size={30}/>
+              <service.icon className={service.color} size={25}/>
               {/* className={service.color} */}
             </div>
             <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 text-center">

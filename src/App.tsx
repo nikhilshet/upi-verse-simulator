@@ -27,6 +27,7 @@ import ApproveRequest from "./pages/approveRequest/ApproveRequest";
 import EnterPINModal from "./components/shared/EnterPINModal";
 import FastagRecharge from "./pages/bbps/FastagRecharge";
 import ElectricityBill from "./pages/bbps/ElectricityBill";
+import MutualFund from "./pages/mutualfund/MutualFund";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,7 @@ const App = () => {
                   <Route path="/bbps/fastag" element={<FastagRecharge />} />
                   <Route path="/bbps/electricity" element={<ElectricityBill />} />
                   <Route path="/ondc" element={<ONDC />} />
+                  <Route path="/ondc/mutualfunds" element = {<MutualFund/>}/>
                   <Route path="/financial" element={<Financial />} />
                   <Route path="/bazaar" element={<Bazaar />} />
                   
