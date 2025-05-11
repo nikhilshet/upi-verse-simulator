@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Backspace, Check, Eye, EyeOff } from 'lucide-react';
+import { Delete, Check, Eye, EyeOff } from 'lucide-react';
 
 interface NumPadProps {
   maxLength?: number;
@@ -121,7 +121,7 @@ const NumPad: React.FC<NumPadProps> = ({
           onClick={handleDelete}
           aria-label="Delete"
         >
-          <Backspace className="h-6 w-6 text-gray-500" />
+          <Delete className="h-6 w-6 text-gray-500" />
         </button>
       </div>
 
