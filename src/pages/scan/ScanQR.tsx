@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LucideCamera, X, ChevronDown } from 'lucide-react';
 import { Button } from '../../components/ui/button';

@@ -4,7 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import BottomNavigation from './BottomNavigation';
 import { useAppContext } from '../../contexts/AppContext';
 import { Navigate } from 'react-router-dom';
-import { BackButton } from '../ui/back-button';
+import GlobalHeader from './GlobalHeader';
 
 const AppLayout = () => {
   const { isOnboarded, darkMode } = useAppContext();
@@ -26,8 +26,8 @@ const AppLayout = () => {
 
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} pb-16 transition-colors`}>
-      <div className="container max-w-md mx-auto px-4 pt-6 pb-20 relative">
-        {!isHomePage && <BackButton />}
+      <GlobalHeader />
+      <div className={`container max-w-md mx-auto px-4 ${isHomePage ? 'pt-6' : 'pt-20'} pb-20 relative`}>
         <Outlet />
       </div>
       <BottomNavigation />
