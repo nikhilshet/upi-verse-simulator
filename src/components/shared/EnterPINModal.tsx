@@ -8,18 +8,21 @@ import NumPad from './NumPad';
 interface EnterPINModalProps {
   onSuccess: () => void;
   onCancel: () => void;
+  amount: number;
+  recipient: string;
+
 }
 
-const EnterPINModal: React.FC<EnterPINModalProps> = ({ onSuccess, onCancel }) => {
+const EnterPINModal: React.FC<EnterPINModalProps> = ({ onSuccess, onCancel , amount , recipient }) => {
   const { user } = useAppContext();
   const [attempts, setAttempts] = React.useState(0);
 
   const handlePinSubmit = (pin: string) => {
-    if (pin === user?.upiPin) {
+    if (pin.length >=4) {
       onSuccess();
     } else {
       setAttempts(prev => prev + 1);
-      
+
       if (attempts >= 2) {
         toast({
           title: "Too many incorrect attempts",
@@ -38,25 +41,34 @@ const EnterPINModal: React.FC<EnterPINModalProps> = ({ onSuccess, onCancel }) =>
   };
 
   return (
-    <div className="relative pb-6 pt-6">
-      <div className="flex flex-col items-center">
-        <div className="w-20 h-20 bg-gradient-to-br from-upi-blue to-upi-blue-dark rounded-full flex items-center justify-center mb-6 shadow-lg">
-          <ShieldCheck className="h-10 w-10 text-white" />
+    <div className="w-full flex flex-col mt-16 items-center justify-between">
+      <div className='w-full'>
+      <div className='w-full flex justify-between'>
+          <div className='px-4'>
+            <p className='font-bold text-black'>{user.selectedBank.toUpperCase()} BANK</p>
+            <p className='text-black'>XXXX876</p>
+          </div>
+          <img className='w-24' src="/upi.svg" alt="" />
         </div>
-        
-        <h2 className="text-2xl font-bold mb-1">Enter UPI PIN</h2>
-        <p className="text-sm text-gray-500 mb-8">Enter your 4-digit UPI PIN to authorize this transaction</p>
-        
+        <div className='w-full px-4 bg-gray-300 flex justify-between'>
+          <div className='px-4'>
+            <p className='text-black'>To:</p>
+            <p className='text-black'>Sending:</p>
+          </div>
+          <div className=''>
+            <p className='text-black'>{recipient}</p>
+            <p className='text-black'>Rs.{amount}</p>
+          </div>
+        </div>
+      </div>
+
+      <p className='mt-32'>ENTER YOUR PIN</p>
         <NumPad
           maxLength={4}
           onComplete={handlePinSubmit}
           onCancel={onCancel}
         />
-        
-        <button className="mt-6 text-sm text-upi-blue" onClick={() => toast({ title: "Coming soon", description: "This feature is not implemented yet" })}>
-          Forgot UPI PIN?
-        </button>
-      </div>
+
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { BackButton } from '@/components/ui/back-button';
 import EnterPINModal from '@/components/shared/EnterPINModal';
 import PaymentProcessing from '@/components/shared/PaymentProcessing';
 import PaymentSuccess from '@/components/shared/PaymentSuccess';
+import { useAppContext } from '@/contexts/AppContext';
 
 enum Step {
   FORM = 'form',
@@ -24,7 +25,8 @@ const FastagRecharge = () => {
   });
   
   const [currentStep, setCurrentStep] = useState<Step>(Step.FORM);
-
+      const {isOnEnterPin , setIsOnEnterPin} = useAppContext()
+  
   const validateVehicleNumber = (value: string) => {
     // Format: AA11AA1111 (e.g., MH12AB1234)
     const regex = /^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/;
@@ -91,11 +93,20 @@ const FastagRecharge = () => {
     setCurrentStep(Step.FORM);
   };
 
+  if(currentStep === Step.ENTER_PIN){
+    setIsOnEnterPin(true)
+  }else{
+    setIsOnEnterPin(false)
+
+  }
+
   if (currentStep === Step.ENTER_PIN) {
     return (
       <EnterPINModal 
         onSuccess={handlePinSuccess}
         onCancel={() => setCurrentStep(Step.FORM)}
+        amount={Number(amount)}
+        recipient='FastTag'
       />
     );
   }

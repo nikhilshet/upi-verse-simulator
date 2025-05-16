@@ -34,7 +34,6 @@ const Profile = () => {
   };
   
   const handleResetPIN = () => {
-    navigate('/onboarding', { state: { resetPin: true } });
     toast({
       title: "PIN reset initiated",
       description: "Follow the steps to set a new UPI PIN",
@@ -42,18 +41,15 @@ const Profile = () => {
   };
   
   const handleLogout = () => {
-    setIsOnboarded(false);
     toast({
       title: "Logged out successfully",
       description: "You have been logged out of your account",
     });
-    navigate('/onboarding');
   };
 
   const handleEdit=()=>{
     setUser({...user , editable : !user.editable})
   }
-  console.log(user);
 
   if(user.editable){
     return(

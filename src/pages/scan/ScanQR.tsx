@@ -35,9 +35,8 @@ interface SendMoneyAmountProps {
 //body
 const ScanQR = () => {
   const contact = useContactsContext()
-  console.log(contact)
-  console.log("in scan qr")
-  const { user } = useAppContext();
+
+  const { user , setIsOnEnterPin } = useAppContext();
   const navigate = useNavigate();
     const location = useLocation();
   
@@ -45,10 +44,15 @@ const ScanQR = () => {
     const [selectedContact, setSelectedContact] = useState<Contact | null>(contact.contacts[2]);
     const [merchant, setMerchant] = useState<Merchant | null>(null);
     const [amount, setAmount] = useState<number>(0);
+  if(scanState === ScanState.ENTER_PIN){
+    setIsOnEnterPin(true)
+  }else{
+    setIsOnEnterPin(false)
 
+  }
   const handleClose = () => {
     setScanState(ScanState.SCANNING)
-    console.log("im here ")
+
     navigate(-1);
   };
   const handleBack = () => {
@@ -84,14 +88,14 @@ const ScanQR = () => {
     
   };
 
-  useEffect(()=>{
-    console.log("in use effect")
-    const timer = setTimeout(()=>{
-      console.log("scan successfull")
-      setScanState(ScanState.ENTER_AMOUNT);
-      console.log("After 5 seconds" , scanState)
-    },3000)
-  },[])
+  // useEffect(()=>{
+  //   console.log("in use effect")
+  //   const timer = setTimeout(()=>{
+  //     console.log("scan successfull")
+  //     setScanState(ScanState.ENTER_AMOUNT);
+  //     console.log("After 5 seconds" , scanState)
+  //   },3000)
+  // },[])
   // useEffect(() => {
   //   if (scanState === ScanState.PROCESSING) {
   //     const timer = setTimeout(() => {
@@ -119,47 +123,48 @@ const ScanQR = () => {
       
   //     return () => clearTimeout(timer);
   //   }
-  // }, [scanState, navigate]);
+//   // }, [scanState, navigate]);
 
-  if(scanState === ScanState.ENTER_AMOUNT){
-    return(
-      <SendMoneyAmount
-        contact={selectedContact}
-        onBack={handleBack}
-        onConfirm={handleAmountConfirm}
-      />
-    )
-  }
-  if(scanState === ScanState.PROCESSING){
-    return <PaymentProcessing
-    amount={amount}
-    recipient={merchant ? merchant.name : selectedContact?.name || ''}
-/>;
-  }
+//   if(scanState === ScanState.ENTER_AMOUNT){
+//     return(
+//       <SendMoneyAmount
+//         contact={selectedContact}
+//         onBack={handleBack}
+//         onConfirm={handleAmountConfirm}
+//       />
+//     )
+//   }
+//   if(scanState === ScanState.PROCESSING){
+//     return <PaymentProcessing
+//     amount={amount}
+//     recipient={merchant ? merchant.name : selectedContact?.name || ''}
+// />;
+//   }
 
-  if(scanState === ScanState.ENTER_PIN){
-    return(
-      <EnterPINModal
-        onSuccess={handlePinSuccess}
-        onCancel={() => setScanState(ScanState.ENTER_AMOUNT)}
-      />
-    )
-  }
-  if(scanState === ScanState.SUCCESS){
-    return (
-      <PaymentSuccess
-        amount={amount}
-        recipient={merchant ? merchant.name : selectedContact?.name || ''}
-        onDone={handleNewPayment}
-      />
-    );
-  }
+//   if(scanState === ScanState.ENTER_PIN){
+//     return(
+//       <EnterPINModal
+//         onSuccess={handlePinSuccess}
+//         onCancel={() => setScanState(ScanState.ENTER_AMOUNT)}
+//         amount={amount}
+//         recipient={merchant ? merchant.name : selectedContact?.name || ''}
+//       />
+//     )
+//   }
+//   if(scanState === ScanState.SUCCESS){
+//     return (
+//       <PaymentSuccess
+//         amount={amount}
+//         recipient={merchant ? merchant.name : selectedContact?.name || ''}
+//         onDone={handleNewPayment}
+//       />
+//     );
+//   }
 
   const simulateQRScan = () => {
     setScanState(ScanState.PROCESSING);
   };
 
-  if(scanState === ScanState.SCANNING){
     return (
       <div className="relative h-screen bg-black">
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-4">
@@ -231,7 +236,7 @@ const ScanQR = () => {
         </style>
       </div>
     );
-  }
+  
  
 };
 

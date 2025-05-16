@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Formik , Form , Field , useFormikContext, ErrorMessage} from 'formik';
 import { Button } from "@/components/ui/button";
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+import {X} from 'lucide-react'
 
 import {z} from 'zod'
 interface formValue{
@@ -31,31 +32,31 @@ function EditProfile(){
     // const [formValue , setFormValue] = useState<formValue>({name:user.name , phone:user.phone , email:user.email})
     return(
         <div>
-            <div className="flex justify-between">
+            <div className="flex px-4 justify-between">
             <h1 className="text-2xl font-bold mb-6">Edit Profile</h1>
-            <div className="w-12 h-12" onClick={()=>setUser({...user , editable : !user.editable})}>X</div>
+            <div className="" onClick={()=>setUser({...user , editable : !user.editable})}><X className="text-gray-500 dark:text-white" /></div>
+            
             </div>
             <Formik
+                
                 initialValues={{name:user.name , phone:user.phone , email:user.email}}
                 validationSchema={toFormikValidationSchema(formValidations)}
                 onSubmit={(values , {setSubmitting} )=>{
-                    console.log(" form values",values)
                     setUser({...user , name:values.name , email:values.email , phone : values.phone , editable : false})
 
                     // setFormValue(values)
                     setTimeout(()=>{
-                      console.log("User" , user)
                         setSubmitting(false)
                     },2000)
                 }}
             >
                   {({ isSubmitting , isValid , values, errors, isValidating, touched }) => (
-                   <Form className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
+                   <Form className="max-w-md mx-auto p-6 text-black bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md space-y-4">
                    <div className="flex flex-col">
-                     <label htmlFor="email" className="mb-1 text-sm font-medium text-gray-700">Email</label>
+                     <label htmlFor="email" className="mb-1 text-sm font-medium text-gray-700 dark:text-white">Email</label>
                      <Field
                        id="email"
-                       className={`h-10 px-3 ${readOnly ? "bg-gray-100 pointer-events-none" : "bg-white"} border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
+                       className={`h-10 px-3 ${readOnly ? "bg-gray-100 pointer-events-none" : "bg-white"}  border border-gray-300 dark:bg-gray-600 dark:border-gray-500 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
                        readOnly={readOnly}
                        type="email"
                        name="email"
@@ -65,10 +66,10 @@ function EditProfile(){
                    </div>
                  
                    <div className="flex flex-col">
-                     <label htmlFor="name" className="mb-1 text-sm font-medium text-gray-700">Name</label>
+                     <label htmlFor="name" className="mb-1 text-sm font-medium text-gray-700 dark:text-white">Name</label>
                      <Field
                        id="name"
-                       className={`h-10 px-3 ${readOnly ? "bg-gray-100 pointer-events-none" : "bg-white"} border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
+                       className={`h-10 px-3 ${readOnly ? "bg-gray-100 pointer-events-none" : "bg-white"} border border-gray-300 dark:bg-gray-600 dark:border-gray-500 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
                        readOnly={readOnly}
                        type="text"
                        name="name"
@@ -79,10 +80,10 @@ function EditProfile(){
                    </div>
                  
                    <div className="flex flex-col">
-                     <label htmlFor="phone" className={`mb-1 text-sm font-medium text-gray-700 `}>Phone</label>
+                     <label htmlFor="phone" className={`mb-1 text-sm font-medium text-gray-700 dark:text-white`}>Phone</label>
                      <Field
                        id="phone"
-                       className={`h-10 px-3 ${readOnly ? "bg-gray-100 pointer-events-none" : "bg-white"} border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
+                       className={`h-10 px-3 ${readOnly ? "bg-gray-100 pointer-events-none" : "bg-white"} border border-gray-300 dark:bg-gray-600 dark:border-gray-500 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black`}
                        readOnly={readOnly}
                        type="tel"
                        name="phone"
@@ -104,7 +105,7 @@ function EditProfile(){
                        type="submit"
                        variant="glow"
                        disabled={readOnly || !isValid}
-                       className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+                       className="w-full py-2 px-4 bg-blue-600 text-white  rounded-md hover:bg-blue-700 transition"
                      >
                        {isSubmitting ? "Saving..." : "Save"}
                      </Button>

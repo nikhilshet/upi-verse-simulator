@@ -2,17 +2,20 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { useAppContext } from '@/contexts/AppContext';
 
 const GlobalHeader: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const {setIsOnEnterPin} = useAppContext();
 
   // Don't render on the dashboard/home page
   if (isHomePage) return null;
 
   const handleBack = () => {
-    navigate(-1);
+    setIsOnEnterPin(false);
+    navigate("..");
   };
 
   return (

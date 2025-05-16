@@ -1,5 +1,5 @@
 import { useAppContext } from "@/contexts/AppContext";
-import { BadgeCheck , Share} from "lucide-react";
+import { CheckCircle , Share} from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom"
 
 const Transaction = () => {
@@ -27,7 +27,7 @@ const Transaction = () => {
             <div className="mb-2"><span className="font-medium">To:</span> {transaction.to.upi} ({transaction.to.bank})</div>
             <div><span className="font-medium">Bank:</span> {transaction.bankName}</div> */}
             <div className="flex flex-col  w-full items-center mb-4">
-                <BadgeCheck color="#73fe71" size={80} className="mb-4"/>
+                <CheckCircle color="#00b50f" size={80} className="mb-4"/>
                 <p className="text-3xl font-medium mb-4">Payment Successful</p>
                 { transaction.type === 'receive' ? "" : <p className="text-md font-medium mb-4">To {transaction.recipient}</p>}
                 

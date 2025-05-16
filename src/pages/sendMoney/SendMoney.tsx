@@ -10,6 +10,7 @@ import SendMoneyAmount from './SendMoneyAmount';
 import EnterPINModal from '@/components/shared/EnterPINModal';
 import PaymentProcessing from '@/components/shared/PaymentProcessing';
 import PaymentSuccess from '@/components/shared/PaymentSuccess';
+import { useAppContext } from '@/contexts/AppContext';
 
 interface Merchant {
   id: string;
@@ -31,13 +32,12 @@ const SendMoney = () => {
   const { contacts } = useContactsContext();
   const location = useLocation();
   const navigate = useNavigate();
-  
+  const {isOnEnterPin , setIsOnEnterPin} = useAppContext()
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
   const [merchant, setMerchant] = useState<Merchant | null>(null);
   const [amount, setAmount] = useState<number>(0);
   const [currentStep, setCurrentStep] = useState<Step>(Step.SELECT_CONTACT);
-  
   useEffect(() => {
     // Check if we have merchant data from the scan QR flow
     if (location.state?.merchant) {
@@ -96,13 +96,19 @@ const SendMoney = () => {
       setCurrentStep(Step.SELECT_CONTACT);
     }
   };
-
+  if(currentStep === Step.ENTER_PIN){
+    setIsOnEnterPin(true)
+  }else{
+    setIsOnEnterPin(false)
+  }
   if (currentStep === Step.ENTER_PIN) {
     return (
       <EnterPINModal 
         onSuccess={handlePinSuccess}
         onCancel={() => setCurrentStep(Step.ENTER_AMOUNT)}
-      />
+        amount={amount}
+        recipient={merchant ? merchant.name : selectedContact?.name || ''}
+        />
     );
   }
 
@@ -147,7 +153,7 @@ const SendMoney = () => {
   }
 
   return (
-    <div className="pb-16">
+    <div className="">
       <h1 className="text-2xl font-bold mb-6">Send Money</h1>
       
       <div className="relative mb-6">

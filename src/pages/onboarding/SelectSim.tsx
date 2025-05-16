@@ -1,12 +1,15 @@
 
 import React from 'react';
 import { CreditCard } from 'lucide-react';
+import { useAppContext } from '@/contexts/AppContext';
 
 interface SelectSimProps {
   onSelect: (sim: string) => void;
 }
 
 const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
+    const {user , setUser} = useAppContext()
+  
   const sims = [
     { id: 'sim1', name: 'Airtel', number: '9876543211' },
     { id: 'sim2', name: 'Jio', number: '8765432109' }

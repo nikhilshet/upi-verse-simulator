@@ -28,6 +28,8 @@ import EnterPINModal from "./components/shared/EnterPINModal";
 import FastagRecharge from "./pages/bbps/FastagRecharge";
 import ElectricityBill from "./pages/bbps/ElectricityBill";
 import MutualFund from "./pages/mutualfund/MutualFund";
+import ThirdParty from "./pages/thirdParty/ThirdParty";
+import Ecommerce from "./pages/ondc/Ecommerce";
 
 const queryClient = new QueryClient();
 
@@ -42,7 +44,7 @@ const App = () => {
             <BrowserRouter>
               <Routes>
                 {/* Onboarding Route */}
-                <Route path="/onboarding" element={<Onboarding />} />
+                {/* <Route path="/onboarding" element={<Onboarding />} /> */}
                 
                 {/* Main App Layout */}
                 <Route element={<AppLayout />}>
@@ -60,9 +62,11 @@ const App = () => {
                   <Route path="/bbps/fastag" element={<FastagRecharge />} />
                   <Route path="/bbps/electricity" element={<ElectricityBill />} />
                   <Route path="/ondc" element={<ONDC />} />
-                  <Route path="/ondc/mutualfunds" element = {<MutualFund/>}/>
-                  <Route path="/financial" element={<Financial />} />
+                  <Route path="/ondc/ecom" element={<Ecommerce/>}/>
+                  {/* <Route path="/ondc/mutualfunds" element = {<MutualFund/>}/> */}
+                  {/* <Route path="/financial" element={<Financial />} /> */}
                   <Route path="/bazaar" element={<Bazaar />} />
+                  <Route path="/thirdparty" element={<ThirdParty/>}/>
                   
                   {/* UPI Action Routes */}
                   <Route path="/send-money" element={<SendMoney />} />

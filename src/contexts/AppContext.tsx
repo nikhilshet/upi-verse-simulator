@@ -39,6 +39,8 @@ interface AppContextType {
   addTransaction: (transaction: Transaction) => void;
   isPinSet: boolean;
   setIsPinSet: (isPinSet: boolean) => void;
+  isOnEnterPin:boolean 
+  setIsOnEnterPin :(isOnEnterPin:boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -49,8 +51,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.getItem('darkMode') === 'true' : false;
   
   const [darkMode, setDarkMode] = useState<boolean>(storedDarkMode);
-  const [user, setUser] = useState<User | null>(null);
-  const [isOnboarded, setIsOnboarded] = useState<boolean>(false);
+const [user, setUser] = useState<User>({ name: "Rahul Sharma",
+  phone: "9876543210",
+  email: "rahul@gmail.com",
+  selectedSim: "Sim1",
+  selectedBank: "SBI",
+  upiPin: "1234",
+  balance: 12000,
+  editable : false});
+  const [isOnboarded, setIsOnboarded] = useState<boolean>(true);
+  const [isOnEnterPin , setIsOnEnterPin] = useState<boolean>(false);
   const [isPinSet, setIsPinSet] = useState<boolean>(false);
   const [transactions, setTransactions] = useState<Transaction[]>([
     {
@@ -188,7 +198,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       transactions, 
       addTransaction,
       isPinSet,
-      setIsPinSet
+      setIsPinSet,
+      isOnEnterPin , 
+      setIsOnEnterPin
     }}>
       {children}
     </AppContext.Provider>

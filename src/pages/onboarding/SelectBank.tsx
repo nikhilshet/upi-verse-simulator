@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Building2 } from 'lucide-react';
+import { useAppContext } from '@/contexts/AppContext';
 
 interface SelectBankProps {
   sim: string;
@@ -8,6 +9,8 @@ interface SelectBankProps {
 }
 
 const SelectBank: React.FC<SelectBankProps> = ({ sim, onSelect }) => {
+    const {user , setUser} = useAppContext()
+  
   // Simulate different banks based on selected SIM
   const banks = sim === 'sim1' 
     ? [

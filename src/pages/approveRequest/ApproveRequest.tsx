@@ -7,6 +7,7 @@ import EnterPINModal from '@/components/shared/EnterPINModal';
 import PaymentProcessing from '@/components/shared/PaymentProcessing';
 import PaymentSuccess from '@/components/shared/PaymentSuccess';
 import { toast } from '@/hooks/use-toast';
+import { useAppContext } from '@/contexts/AppContext';
 
 enum Step {
   VIEW_REQUESTS = 'view-requests',
@@ -19,12 +20,18 @@ const ApproveRequest = () => {
   const { pendingRequests, setPendingRequests } = useContactsContext();
   const [currentRequest, setCurrentRequest] = useState<PendingRequest | null>(null);
   const [currentStep, setCurrentStep] = useState<Step>(Step.VIEW_REQUESTS);
-
+    const { user , setIsOnEnterPin } = useAppContext();
+  
   const handleApprove = (request: PendingRequest) => {
     setCurrentRequest(request);
     setCurrentStep(Step.ENTER_PIN);
   };
+  if(currentStep === Step.ENTER_PIN){
+    setIsOnEnterPin(true)
+  }else{
+    setIsOnEnterPin(false)
 
+  }
   const handleReject = (request: PendingRequest) => {
     // Update request status to rejected
     setPendingRequests(prevRequests => 
@@ -66,6 +73,8 @@ const ApproveRequest = () => {
       <EnterPINModal 
         onSuccess={handlePinSuccess}
         onCancel={() => setCurrentStep(Step.VIEW_REQUESTS)}
+        amount= {459}
+        recipient="Zomato"
       />
     );
   }

@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import EnterPINModal from '@/components/shared/EnterPINModal';
 import PaymentProcessing from '@/components/shared/PaymentProcessing';
 import PaymentSuccess from '@/components/shared/PaymentSuccess';
+import { useAppContext } from '@/contexts/AppContext';
 
 enum Step {
   VIEW_BILLS = 'view-bills',
@@ -31,6 +32,7 @@ interface ElectricityBill {
 
 const ElectricityBill = () => {
   const [currentStep, setCurrentStep] = useState<Step>(Step.VIEW_BILLS);
+    const {isOnEnterPin , setIsOnEnterPin} = useAppContext()
   
   const electricityProviders: ElectricityProvider[] = [
     { id: 'tata', name: 'Tata Power', logo: 'https://logoeps.com/wp-content/uploads/2012/10/tata-power-logo-vector.png' },
@@ -46,6 +48,13 @@ const ElectricityBill = () => {
     amount: 2345,
     dueDate: '2025-05-15'
   };
+
+  if(currentStep === Step.ENTER_PIN){
+    setIsOnEnterPin(true)
+  }else{
+    setIsOnEnterPin(false)
+
+  }
 
   const handlePayBill = () => {
     setCurrentStep(Step.ENTER_PIN);
@@ -64,11 +73,15 @@ const ElectricityBill = () => {
     setCurrentStep(Step.VIEW_BILLS);
   };
 
+
+
   if (currentStep === Step.ENTER_PIN) {
     return (
       <EnterPINModal 
         onSuccess={handlePinSuccess}
         onCancel={() => setCurrentStep(Step.VIEW_BILLS)}
+        amount={pendingBill.amount}
+        recipient={pendingBill.provider.name}
       />
     );
   }
@@ -88,7 +101,7 @@ const ElectricityBill = () => {
   }
 
   return (
-    <div className="pt-6">
+    <div className="">
       <BackButton />
       <h1 className="text-2xl font-bold mb-6 mt-6">Electricity Bill</h1>
       
@@ -140,7 +153,7 @@ const ElectricityBill = () => {
               key={provider.id}
               className="w-full flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="flex items-center">
+              <div className="flex space-x-4 items-center">
                   <img 
                     src={`/${provider.id}.svg`} 
                     alt={provider.name}

@@ -68,7 +68,7 @@ const SendMoneyAmount: React.FC<SendMoneyAmountProps> = ({
 
   return (
     <div className="relative flex flex-col justify-between pb-0">
-      <Button
+      {/* <Button
         variant="ghost"
         size="icon"
         onClick={onBack}
@@ -76,7 +76,7 @@ const SendMoneyAmount: React.FC<SendMoneyAmountProps> = ({
         aria-label="Back"
       >
         <ArrowLeft className="h-5 w-5" />
-      </Button>
+      </Button> */}
 
       <div className="flex flex-col items-center pt-8 pb-4">
         {recipient && (
@@ -100,8 +100,8 @@ const SendMoneyAmount: React.FC<SendMoneyAmountProps> = ({
 
       <form onSubmit={handleSubmit} className="space-y-6 mt-6">
         <div className="relative">
-          <div className="flex justify-center items-baseline">
-            <span className="text-2xl mr-2 text-black dark:text-gray-300">₹</span>
+          <div className="grid grid-cols-[40%_60%] justify-center items-center">
+            <span className="text-2xl justify-self-end text-center mr-2 text-black dark:text-gray-300">₹</span>
             <input
               type="text"
               value={amount}

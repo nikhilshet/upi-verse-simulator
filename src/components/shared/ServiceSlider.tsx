@@ -4,12 +4,14 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { LucideIcon } from "lucide-react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
+import { useAppContext } from '@/contexts/AppContext';
 
 interface Service {
   id: string;
   name: string;
   icon: LucideIcon;
   color:string;
+  iconColor:string;
 }
 
 interface ServiceSliderProps {
@@ -20,6 +22,7 @@ interface ServiceSliderProps {
 
 const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, classProps}) => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const {setIsOnEnterPin} = useAppContext();
   const navigate = useNavigate();
   const scroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
@@ -30,10 +33,13 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, classProps}) =>
   };
   
   function onServiceClick(id:string , name:string){
-    if(id === "electricity" || id === "fasttag"){
+    if(id === "electricity" || id === "fastag"){
       navigate(`/bbps/${id}`)
     }else if(id === "mutualfunds" ){
+      setIsOnEnterPin(true);
       navigate(`/ondc/${id}`)
+    }else if(id === "ecom"){
+      navigate('/ondc/ecom')
     }
     else{
       toast({
@@ -43,7 +49,7 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, classProps}) =>
     }
   }
 
-  console.log(services)
+  // console.log(services)
   // Get color based on service icon name
   // const getIconColor = (iconName: string) => {
   //   const colors: Record<string, string> = {
@@ -76,7 +82,8 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, classProps}) =>
   // };
 
   return (
-    <div className={`relative ${classProps}`}>
+    <div className={`relative ${classProps} `}>
+
       {/* <button
         onClick={() => scroll('left')}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -99,9 +106,9 @@ const ServiceSlider: React.FC<ServiceSliderProps> = ({ services, classProps}) =>
           >
             {/* {getIconComponent(service.icon)} */}
               {/* <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white`}>  */}
-              <div className={`w-12 h-12 rounded-full flex items-center bg-white dark:bg-gray-800 justify-center text-white`}> 
+              <div className={`  w-12 h-12 rounded-full flex items-center ${service.color} justify-center text-white`}> 
 
-              <service.icon className={service.color} size={25}/>
+              <service.icon className={service.iconColor} size={25}/>
               {/* className={service.color} */}
             </div>
             <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 text-center">

@@ -20,7 +20,7 @@ interface User {
 }
 
 const Onboarding = () => {
-  const { setUser, setIsOnboarded, setIsPinSet } = useAppContext();
+  const {user, setUser, setIsOnboarded, setIsPinSet } = useAppContext();
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [userData, setUserData] = useState<User>({
@@ -37,11 +37,13 @@ const Onboarding = () => {
   const steps = ['Select SIM', 'Select Bank', 'Set UPI PIN', 'Confirm PIN'];
 
   const handleSimSelection = (sim: string) => {
+    setUser({...user , selectedSim:sim})
     setUserData({ ...userData, selectedSim: sim });
     setActiveStep(1);
   };
 
   const handleBankSelection = (bank: string) => {
+    setUser({...user , selectedBank:bank})
     setUserData({ ...userData, selectedBank: bank });
     setActiveStep(2);
   };
@@ -62,10 +64,29 @@ const Onboarding = () => {
   const handleBackToPinEntry = () => {
     setActiveStep(2);
   };
+  if(activeStep === 2){
+    return(
+      <div className=''>
+              <EnterPin onComplete={handlePinEntered} />
 
+      </div>
+    )
+  }
+  if(activeStep === 3){
+    return(
+      <div>
+              <ConfirmPin 
+      originalPin={userData.upiPin} 
+      onComplete={handlePinConfirmed}
+      onBack={handleBackToPinEntry}
+    /> 
+      </div>
+
+    )
+  }
   return (
-    <div className="min-h-screen bg-gradient-to-b from-upi-blue to-upi-blue-dark flex flex-col items-center justify-start pt-10 px-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
+    <div className="min-h-screen  flex flex-col items-center justify-start pt-10 px-4">
+      <div className="w-full h-screen max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
           Welcome to UPI Verse
         </h1>
@@ -81,14 +102,14 @@ const Onboarding = () => {
         <div className="mt-8">
           {activeStep === 0 && <SelectSim onSelect={handleSimSelection} />}
           {activeStep === 1 && <SelectBank sim={userData.selectedSim} onSelect={handleBankSelection} />}
-          {activeStep === 2 && <EnterPin onComplete={handlePinEntered} />}
+          {/* {activeStep === 2 && <EnterPin onComplete={handlePinEntered} />}
           {activeStep === 3 && (
             <ConfirmPin 
               originalPin={userData.upiPin} 
               onComplete={handlePinConfirmed}
               onBack={handleBackToPinEntry}
             />
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -15,16 +15,15 @@ const NumPad: React.FC<NumPadProps> = ({
 }) => {
   const [pin, setPin] = useState<string>('');
   const [showPin, setShowPin] = useState<boolean>(false);
-
   const handleNumberPress = (num: number) => {
     if (pin.length < maxLength) {
       const newPin = pin + num.toString();
       setPin(newPin);
       
       // Auto-submit when PIN reaches maximum length
-      if (newPin.length === maxLength) {
-        setTimeout(() => onComplete(newPin), 300);
-      }
+      // if (newPin.length === maxLength) {
+      //   setTimeout(() => onComplete(newPin), 300);
+      // }
     }
   };
 
@@ -49,10 +48,11 @@ const NumPad: React.FC<NumPadProps> = ({
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return (
       <>
+        
         {numbers.map(num => (
           <button
             key={num}
-            className="w-full h-16 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center text-2xl font-medium transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
+            className="text-black w-full h-16 bg-white flex  items-center justify-center text-2xl font-medium transition-all"
             onClick={() => handleNumberPress(num)}
           >
             {num}
@@ -63,18 +63,15 @@ const NumPad: React.FC<NumPadProps> = ({
   };
 
   return (
-    <div className="w-full max-w-xs mx-auto flex flex-col items-center">
+    <div className="w-full mx-0  flex flex-col items-center">
       {/* PIN Display */}
-      <div className="flex items-center justify-center w-full mb-8 relative">
+    
+      <div className="flex items-center justify-center w-full mb-24 relative">
         <div className="flex gap-3 items-center justify-center">
           {Array.from({ length: maxLength }).map((_, index) => (
             <div 
               key={index}
-              className={`w-3 h-3 rounded-full ${
-                index < pin.length 
-                  ? 'bg-upi-blue dark:bg-upi-blue-light' 
-                  : 'bg-gray-300 dark:bg-gray-600'
-              } transition-all ${pin.length === index ? 'scale-110' : ''}`}
+              className={`w-4 h-4 border border-black rounded-full ${index < pin.length ? 'bg-black' : 'bg-white'} transition-all ${pin.length === index ? 'scale-110' : ''}`}
             >
               {showPin && index < pin.length && (
                 <span className="absolute -top-8 text-lg font-semibold">
@@ -85,7 +82,7 @@ const NumPad: React.FC<NumPadProps> = ({
           ))}
         </div>
         
-        <button 
+        {/* <button 
           className="absolute right-0 p-2"
           onClick={togglePinVisibility}
           aria-label={showPin ? "Hide PIN" : "Show PIN"}
@@ -95,38 +92,47 @@ const NumPad: React.FC<NumPadProps> = ({
           ) : (
             <Eye className="h-5 w-5 text-gray-500" />
           )}
-        </button>
+        </button> */}
       </div>
 
       {/* Numpad */}
-      <div className="grid grid-cols-3 gap-4 w-full">
+      <div className="grid grid-cols-3 gap-[1px] border border-gray-500 w-full bg-black">
         {renderNumberButtons()}
-        
         <button
-          className="w-full h-16 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
-          onClick={() => onCancel && onCancel()}
+          className="w-full h-16 bg-white flex  items-center justify-center text-2xl"
+          onClick={handleDelete}
+          aria-label="Delete"
         >
-          <div className="opacity-0">0</div>
+          <Delete className="h-6 w-6 text-black" />
         </button>
-        
+
         <button
-          className="w-full h-16 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center text-2xl font-medium transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
+          className=" text-black w-full h-16 bg-white flex  items-center justify-center text-2xl "
           onClick={() => handleNumberPress(0)}
         >
           0
         </button>
+
+        {/* <button
+          className="w-full h-16 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
+          onClick={() => onCancel && onCancel()}
+        >
+          <div className="" ></div>
+        </button> */}
         
         <button
-          className="w-full h-16 rounded-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
-          onClick={handleDelete}
-          aria-label="Delete"
-        >
-          <Delete className="h-6 w-6 text-gray-500" />
-        </button>
+        className='text-black w-full h-16 bg-white flex  items-center justify-center text-lg '
+        onClick={handleSubmit}
+        disabled={pin.length === 0}
+      >
+        SUBMIT
+      </button>
+        
+        
       </div>
 
       {/* Submit button */}
-      <button
+      {/* <button
         className={`mt-6 w-full h-12 rounded-full flex items-center justify-center transition-all ${
           pin.length > 0
             ? 'bg-upi-blue text-white hover:bg-upi-blue-dark active:scale-95'
@@ -137,7 +143,7 @@ const NumPad: React.FC<NumPadProps> = ({
       >
         <Check className="h-5 w-5 mr-2" />
         Confirm
-      </button>
+      </button> */}
     </div>
   );
 };
