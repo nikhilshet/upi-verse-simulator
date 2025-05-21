@@ -8,10 +8,7 @@ import EnterPINModal from '@/components/shared/EnterPINModal';
 import PaymentProcessing from '@/components/shared/PaymentProcessing';
 import PaymentSuccess from '@/components/shared/PaymentSuccess';
 import { useAppContext } from '@/contexts/AppContext';
-import adani from '../../assets/Adani Power.svg'
-import tata from '../../assets/tata.svg'
-import mseb from '../../assets/mseb.svg'
-import reliance from '../../assets/reliance.svg'
+
 
 enum Step {
   VIEW_BILLS = 'view-bills',
@@ -39,10 +36,10 @@ const ElectricityBill = () => {
     const {isOnEnterPin , setIsOnEnterPin} = useAppContext()
   
   const electricityProviders: ElectricityProvider[] = [
-    { id: 'tata', name: 'Tata Power', logo: tata },
-    { id: 'reliance', name: 'Reliance Energy', logo: reliance },
-    { id: 'adani', name: 'Adani Electricity', logo: adani},
-    { id: 'mseb', name: 'MSEB', logo: mseb },
+    { id: 'tata', name: 'Tata Power', logo: "/images/tata.svg" },
+    { id: 'reliance', name: 'Reliance Energy', logo: "/images/reliance.svg" },
+    { id: 'adani', name: 'Adani Electricity', logo: "/images/Adani Power.svg"},
+    { id: 'mseb', name: 'MSEB', logo: "/images/mseb.svg" },
   ];
 
   const pendingBill: ElectricityBill = {
@@ -117,7 +114,7 @@ const ElectricityBill = () => {
             <div className="border-l-4 border-orange-500 p-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/20 rounded-full flex items-center justify-center mr-3">
+                  <div className="w-10 h-10 dark:bg-orange-900/20 rounded-full flex items-center justify-center mr-3">
                     <img src={pendingBill.provider.logo} className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>

@@ -95,6 +95,7 @@ const upi = [
     setIsOnEnterPin(false);
   }, [])
   return (
+    
     <div className="flex flex-col space-y-7">
       {/* <BalanceCard balance={user?.balance || 0} /> */}
 
@@ -187,7 +188,8 @@ const upi = [
 
       </section>
 
-
+      <div>
+      </div>
       {/* <section className="flex flex-col space-y-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
 
 
