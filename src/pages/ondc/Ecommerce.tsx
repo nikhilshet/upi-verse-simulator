@@ -2,6 +2,7 @@ import ServiceSlider from "@/components/shared/ServiceSlider"
 import ServiceSlider2 from "@/components/shared/ServiceSlider2"
 import { Input } from "@/components/ui/input"
 import { Send, ArrowDownLeft, RefreshCw, Search } from 'lucide-react'
+import ondc from '../../assets/ondc.png'
 const Ecommerce = () => {
     const services = [
         { id: 'mens', name: 'Mens', icon: 'https://i.pravatar.cc/300?img=1', color: 'text-red-200' },
@@ -144,7 +145,7 @@ const fashionItems = [
                         <p className="text-lg text-center"><span className="text-blue-500">SHOP </span>THROUGH ONDC</p>
                         
                     </div>
-                    <img src="/ondc.png" alt="" className="w-36" />
+                    <img src={ondc} alt="" className="w-36" />
                 </div>
                 <div className="grid grid-cols-2 gap-4 bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90">
                     {products}

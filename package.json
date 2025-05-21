@@ -59,6 +59,7 @@
     "react-rewards": "^2.1.0",
     "react-router-dom": "^6.26.2",
     "recharts": "^2.12.7",
+    "serve": "^14.2.4",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",

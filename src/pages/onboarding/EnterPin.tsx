@@ -4,6 +4,8 @@ import { LockKeyhole } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import NumPad from '@/components/shared/NumPad';
 import { useAppContext } from '@/contexts/AppContext';
+import upi from '../../assets/upi.svg'
+
 
 interface EnterPinProps {
   onComplete: (pin: string) => void;
@@ -30,7 +32,7 @@ const EnterPin: React.FC<EnterPinProps> = ({ onComplete }) => {
         <p>XXXX876</p>
         </div>
         
-        <img className='w-24' src="/upi.svg" alt="" />
+        <img className='w-24' src={upi} alt="" />
 
 
       </div>

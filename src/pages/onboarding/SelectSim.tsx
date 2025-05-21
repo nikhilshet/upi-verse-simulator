@@ -2,6 +2,8 @@
 import React from 'react';
 import { CreditCard } from 'lucide-react';
 import { useAppContext } from '@/contexts/AppContext';
+import Airtel from '../../assets/Airtel.svg'
+import Jio from '../../assets/Jio.svg'
 
 interface SelectSimProps {
   onSelect: (sim: string) => void;
@@ -11,8 +13,8 @@ const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
     const {user , setUser} = useAppContext()
   
   const sims = [
-    { id: 'sim1', name: 'Airtel', number: '9876543211' },
-    { id: 'sim2', name: 'Jio', number: '8765432109' }
+    { id: 'sim1', name: 'Airtel', number: '9876543211' , logo:Airtel },
+    { id: 'sim2', name: 'Jio', number: '8765432109' , logo:Jio }
   ];
 
   return (
@@ -29,7 +31,7 @@ const SelectSim: React.FC<SelectSimProps> = ({ onSelect }) => {
           >
             <div className="flex items-center">
               <div>
-              <img src={`/${sim.name}.svg`} className="h-8 w-8 text-white" />
+              <img src={sim.logo} className="h-8 w-8 text-white" />
               </div>
             </div>
             <div>

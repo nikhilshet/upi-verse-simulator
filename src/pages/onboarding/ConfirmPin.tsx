@@ -5,7 +5,7 @@ import { toast } from '@/hooks/use-toast';
 import { ShieldCheck, LockKeyhole } from 'lucide-react';
 import NumPad from '@/components/shared/NumPad';
 import { useAppContext } from '@/contexts/AppContext';
-
+import upi from '../../assets/upi.svg'
 interface ConfirmPinProps {
   originalPin: string;
   onComplete: (pin: string) => void;
@@ -44,7 +44,7 @@ const ConfirmPin: React.FC<ConfirmPinProps> = ({ originalPin, onComplete, onBack
         <p>XXXX876</p>
         </div>
         
-        <img className='w-24' src="/upi.svg" alt="" />
+        <img className='w-24' src={upi} alt="" />
       </div>
       <div className='mt-32'>
               <p>RE-ENTER 4-DIGIT UPI PIN</p>

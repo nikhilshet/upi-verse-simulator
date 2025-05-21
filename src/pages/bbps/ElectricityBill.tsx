@@ -8,6 +8,10 @@ import EnterPINModal from '@/components/shared/EnterPINModal';
 import PaymentProcessing from '@/components/shared/PaymentProcessing';
 import PaymentSuccess from '@/components/shared/PaymentSuccess';
 import { useAppContext } from '@/contexts/AppContext';
+import adani from '../../assets/Adani Power.svg'
+import tata from '../../assets/tata.svg'
+import mseb from '../../assets/mseb.svg'
+import reliance from '../../assets/reliance.svg'
 
 enum Step {
   VIEW_BILLS = 'view-bills',
@@ -35,12 +39,12 @@ const ElectricityBill = () => {
     const {isOnEnterPin , setIsOnEnterPin} = useAppContext()
   
   const electricityProviders: ElectricityProvider[] = [
-    { id: 'tata', name: 'Tata Power', logo: 'https://logoeps.com/wp-content/uploads/2012/10/tata-power-logo-vector.png' },
-    { id: 'reliance', name: 'Reliance Energy', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Reliance_Power_logo.svg/1200px-Reliance_Power_logo.svg.png' },
-    { id: 'adani', name: 'Adani Electricity', logo: 'https://www.adanielectricity.com/-/media/Project/Electricity/Electricity/images/Img-For-Meta-Tag.png' },
-    { id: 'mseb', name: 'MSEB', logo: 'https://upload.wikimedia.org/wikipedia/en/6/6a/Maharashtra_State_Electricity_Distribution_Company_Limited_Logo.png' },
+    { id: 'tata', name: 'Tata Power', logo: tata },
+    { id: 'reliance', name: 'Reliance Energy', logo: reliance },
+    { id: 'adani', name: 'Adani Electricity', logo: adani},
+    { id: 'mseb', name: 'MSEB', logo: mseb },
   ];
-  
+
   const pendingBill: ElectricityBill = {
     id: 'bill123',
     provider: electricityProviders[0],
@@ -48,7 +52,6 @@ const ElectricityBill = () => {
     amount: 2345,
     dueDate: '2025-05-15'
   };
-
   if(currentStep === Step.ENTER_PIN){
     setIsOnEnterPin(true)
   }else{
@@ -115,7 +118,7 @@ const ElectricityBill = () => {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/20 rounded-full flex items-center justify-center mr-3">
-                    <img src={`/${pendingBill.provider.id}.svg`} className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                    <img src={pendingBill.provider.logo} className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>
                     <h3 className="font-bold">{pendingBill.provider.name}</h3>
@@ -155,7 +158,7 @@ const ElectricityBill = () => {
             >
               <div className="flex space-x-4 items-center">
                   <img 
-                    src={`/${provider.id}.svg`} 
+                    src={provider.logo} 
                     alt={provider.name}
                     className="w-8 h-18" 
                   />
