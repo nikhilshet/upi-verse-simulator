@@ -38,7 +38,7 @@ const ElectricityBill = () => {
   const electricityProviders: ElectricityProvider[] = [
     { id: 'tata', name: 'Tata Power', logo: "/images/tata.svg" },
     { id: 'reliance', name: 'Reliance Energy', logo: "/images/reliance.svg" },
-    { id: 'adani', name: 'Adani Electricity', logo: "/images/Adani Power.svg"},
+    { id: 'adani', name: 'Adani Electricity', logo: "/images/AdaniPower.svg"},
     { id: 'mseb', name: 'MSEB', logo: "/images/mseb.svg" },
   ];
 
