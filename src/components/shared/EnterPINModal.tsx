@@ -48,7 +48,7 @@ const EnterPINModal: React.FC<EnterPINModalProps> = ({ onSuccess, onCancel , amo
             <p className='font-bold text-black'>{user.selectedBank.toUpperCase()} BANK</p>
             <p className='text-black'>XXXX876</p>
           </div>
-          <img className='w-24' src="/images/upi.svg" alt="" />
+          <img className='w-24' src="/superapp/images/upi.svg" alt="" />
         </div>
         <div className='w-full px-4 bg-gray-300 flex justify-between'>
           <div className='px-4'>

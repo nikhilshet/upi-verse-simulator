@@ -7,7 +7,8 @@ const NotFound = () => {
   const navigate = useNavigate()
   
   const handleClick=()=>{
-    navigate('..')
+    navigate('/')
+    
   }
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-gray-50 dark:bg-gray-900">

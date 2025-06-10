@@ -28,7 +28,7 @@ const ONDC = () => {
     amount1: "1249",
     merchant2: "Himalaya Wellness",
     amount2: "599",
-    icon1: ShoppingBag, // e.g., import from lucide-react
+    icon1: ShoppingBag,
     icon2: PackageCheck,
     service1: "Clothing & Apparel",
     service2: "Health & Personal Care"

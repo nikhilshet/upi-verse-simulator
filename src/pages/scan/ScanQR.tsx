@@ -53,7 +53,7 @@ const ScanQR = () => {
   const handleClose = () => {
     setScanState(ScanState.SCANNING)
 
-    navigate(-1);
+    navigate('/');
   };
   const handleBack = () => {
     if (scanState === ScanState.ENTER_AMOUNT) {

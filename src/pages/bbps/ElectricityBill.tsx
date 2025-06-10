@@ -36,10 +36,10 @@ const ElectricityBill = () => {
     const {isOnEnterPin , setIsOnEnterPin} = useAppContext()
   
   const electricityProviders: ElectricityProvider[] = [
-    { id: 'tata', name: 'Tata Power', logo: "/images/tata.svg" },
-    { id: 'reliance', name: 'Reliance Energy', logo: "/images/reliance.svg" },
-    { id: 'adani', name: 'Adani Electricity', logo: "/images/AdaniPower.svg"},
-    { id: 'mseb', name: 'MSEB', logo: "/images/mseb.svg" },
+    { id: 'tata', name: 'Tata Power', logo: "/superapp/images/tata.svg" },
+    { id: 'reliance', name: 'Reliance Energy', logo: "/superapp/images/reliance.svg" },
+    { id: 'adani', name: 'Adani Electricity', logo: "/superapp/images/AdaniPower.svg"},
+    { id: 'mseb', name: 'MSEB', logo: "/superapp/images/mseb.svg" },
   ];
 
   const pendingBill: ElectricityBill = {

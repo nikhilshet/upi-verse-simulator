@@ -10,12 +10,16 @@ const GlobalHeader: React.FC = () => {
   const isHomePage = location.pathname === '/';
   const {setIsOnEnterPin} = useAppContext();
 
+  const path = location.pathname
+  const indexOfSlash = path.lastIndexOf('/')
+  const newPath = path.substring(0 , indexOfSlash)
+
   // Don't render on the dashboard/home page
   if (isHomePage) return null;
 
   const handleBack = () => {
     setIsOnEnterPin(false);
-    navigate("..");
+    navigate(newPath);
   };
 
   return (

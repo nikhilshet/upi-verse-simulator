@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter, Navigate } from "react-router-dom";
 import { AppProvider } from "./contexts/AppContext";
 import { ContactsProvider } from "./contexts/ContactsContext";
 
@@ -41,7 +41,7 @@ const App = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
-            <BrowserRouter>
+            <HashRouter>
               <Routes>
                 {/* Onboarding Route */}
                 {/* <Route path="/onboarding" element={<Onboarding />} /> */}
@@ -49,6 +49,8 @@ const App = () => {
                 {/* Main App Layout */}
                 <Route element={<AppLayout />}>
                   {/* Dashboard (Home) */}
+                      {/* <Route path="/" element={<Navigate to="/superapp" replace />} /> */}
+
                   <Route path="/" element={<Dashboard />} />
                   
                   {/* Main Navigation Routes */}
@@ -79,7 +81,7 @@ const App = () => {
                 {/* 404 Not Found */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
-            </BrowserRouter>
+            </HashRouter>
           </TooltipProvider>
         </ContactsProvider>
       </AppProvider>

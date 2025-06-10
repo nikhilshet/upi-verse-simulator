@@ -144,7 +144,7 @@ const fashionItems = [
                         <p className="text-lg text-center"><span className="text-blue-500">SHOP </span>THROUGH ONDC</p>
                         
                     </div>
-                    <img src="/images/ondc.png" alt="" className="w-36" />
+                    <img src="/superapp/images/ondc.png" alt="" className="w-36" />
                 </div>
                 <div className="grid grid-cols-2 gap-4 bg-white dark:bg-gray-800/90 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800/90">
                     {products}
